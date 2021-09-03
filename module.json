@@ -1,0 +1,19 @@
+{
+    "name": "tera-helper",
+    "options": {
+        "niceName": "辅助合集",
+        "cliName": "辅助合集",
+        "guiName": "Tera-Helper",
+        "reloadable": true,
+        "settingsFile": "config.json",
+        "settingsMigrator": "./settings/migrator.js",
+        "settingsVersion": 1
+    },
+    "author": "ZC",
+    "description": "这个B很懒, 什么都没留下...",
+    "servers": [
+        "https://gitee.com/zc149352394/TEAR-Helper/raw/main/",
+        "https://raw.githubusercontent.com/zc149352394/TEAR-Helper/main/"
+    ],
+    "version": "92.03 - 109.02"
+}
