@@ -19,8 +19,8 @@ function add_0(i) {
 	if (i < 10) i = "0" + i
 	return i
 }
-if (!fs.existsSync(path.join(__dirname, './data'))) {
-	fs.mkdirSync(path.join(__dirname, './data'));
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+	fs.mkdirSync(path.join(__dirname, 'data'));
 }
 function saveJsonData(pathToFile, data) {
 	fs.writeFileSync(path.join(__dirname, pathToFile), JSON.stringify(data, null, "\t"));
@@ -138,47 +138,46 @@ module.exports = function TeraHelper(mod) {
 		mod.log('[sysmsg]\r')
 		mod.log(mod.clientInterface.info.sysmsg)
 	})
-	mod.command.add('b', () => {
+	mod.command.add("b", () => {
 		mod.send('S_NPC_MENU_SELECT', 1, { type: 28 })
 		mod.command.message(`交易所`)
 	})
-	mod.command.add('d', () => {
+	mod.command.add("d", () => {
 		mod.send('C_LEAVE_PARTY', 1, {})
 		mod.command.message(`退出组队`)
 	})
-	mod.command.add('e', () => {
+	mod.command.add("e", () => {
 		mod.send('C_DISMISS_PARTY', 1, {})
 		mod.command.message(`解散组队`)
 	})
-	mod.command.add('r', () => {
+	mod.command.add("r", () => {
 		mod.send('C_RESET_ALL_DUNGEON', 1, {})
 		mod.command.message(`重置副本`)
 	})
-	mod.command.add('q', () => {
+	mod.command.add("q", () => {
 		mod.send('C_RETURN_TO_LOBBY', 1, {})
 		mod.command.message(`登出角色`)
 	})
 	// 刷新 显示范围
-	let visibleRange = 1800 // 初始显示范围
-	mod.command.add("re", Refresh)
-	mod.hookOnce('C_SET_VISIBLE_RANGE', 1, DEFAULT_HOOK_SETTINGS, e => {
-		visibleRange = e.range
+	let visibleRange // = 1800
+	mod.hookOnce('C_SET_VISIBLE_RANGE', 1, e => {
+		if (visibleRange != 1) visibleRange = e.range // 显示范围 - 系统初始值
 	})
-	function Refresh() {
+	mod.command.add("re", () => {
 		mod.send('C_SET_VISIBLE_RANGE', 1, { range: 1 })
 		mod.setTimeout(() => {
 			mod.send('C_SET_VISIBLE_RANGE', 1, { range: visibleRange })
 		}, 1000)
-	}
+	})
 	// 切换 分流线路
-	mod.command.add('c', (arg) => {
+	mod.command.add("c", (arg) => {
 		if (arg && !isNaN(arg)) {
 			selectChannel(Number(arg))
 		} else {
 			selectChannel(mod.game.me.channel + 1)
 		}
 	})
-	mod.hook('S_CURRENT_CHANNEL', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_CURRENT_CHANNEL', 2, e => {
 		mod.game.me.channel = e.channel
 	})
 	function selectChannel(select) {
@@ -409,35 +408,35 @@ module.exports = function TeraHelper(mod) {
 		notifierMsg(`您正在遭受攻击!!!`, `战斗通知`, '13.png')
 	})
 	// 重置副本
-	mod.hook('S_VOTE_RESET_ALL_DUNGEON', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_VOTE_RESET_ALL_DUNGEON', 1, e => {
 		notifierMsg(`重置副本!!`, `重置副本`, '02.png')
 	})
 	// 密语消息
-	mod.hook('S_WHISPER', (Ver<108?3 : 4), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_WHISPER', (Ver<108?3 : 4), e => {
 		notifierMsg(`好友 ${e.name} 悄悄对你说:\n${e.message.replace(/<[^>]+>/g, '')}`, `私信通知`, '08.png')
 	})
 	// 匹配副本
-	mod.hook('S_FIN_INTER_PARTY_MATCH', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_FIN_INTER_PARTY_MATCH', 1, e => {
 		notifierMsg(`Zone: ${e.zone}, 副本配对-成功!`, `匹配通知`, '07.png')
 	})
 	// 匹配战场
-	mod.hook('S_BATTLE_FIELD_ENTRANCE_INFO', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_BATTLE_FIELD_ENTRANCE_INFO', 1, e => {
 		notifierMsg(`ID: ${e.id} Zone: ${e.zone}, 战场配对-成功!`, `匹配通知`, '06.png')
 	})
 	// 招募申请
-	mod.hook('S_OTHER_USER_APPLY_PARTY', (Ver<109?1 : 2), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_OTHER_USER_APPLY_PARTY', (Ver<109?1 : 2), e => {
 		notifierMsg(`<${e.name}>\n申请加入你的[招募队伍].` , `招募申请`, 'group_add.png')
 	})
 	// 组队邀请
-	mod.hook('S_BEGIN_THROUGH_ARBITER_CONTRACT', (Ver<109? 1 : 2), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_BEGIN_THROUGH_ARBITER_CONTRACT', (Ver<109? 1 : 2), e => {
 		notifierMsg(`<${e.sender}>\n邀请你进入[组队].` , `组队通知`, 'group.png')
 	})
 	// 组队召唤
-	mod.hook('S_ASK_TELEPORT', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_ASK_TELEPORT', 1, e => {
 		notifierMsg(`<${e.name}>\n想要[召唤]你到身边.` , `召唤请求`, '14.png')
 	})
 	// 其他通知
-	mod.hook('S_REQUEST_CONTRACT', (Ver<108?1 : 2), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REQUEST_CONTRACT', (Ver<108?1 : 2), e => {
 		if (mod.game.me.name == e.senderName) return
 		switch(e.type) {
 			case 3:
@@ -452,60 +451,60 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	// 查询物品ID
-	mod.hook('S_SHOW_ITEM_TOOLTIP', (Ver<106?14 : Ver<107?15 : Ver<109?16 : 17), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SHOW_ITEM_TOOLTIP', (Ver<106?14 : Ver<107?15 : Ver<109?16 : 17), e => {
 		if (mod.settings.logItemId) mod.command.message("[SHOW_ITEM_TOOLTIP] " + e.id)
 	})
-	mod.hook('C_REQUEST_NONDB_ITEM_INFO', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_REQUEST_NONDB_ITEM_INFO', 2, e => {
 		if (mod.settings.logItemId) mod.command.message("[REQUEST_NONDB_ITEM_INFO] " + e.item)
 	})
 	// 阻止 返回大厅 AFKer
 	let stopMoving = Date.now()
-	mod.hook('C_PLAYER_LOCATION', 5, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_PLAYER_LOCATION', 5, e => {
 		mod.game.me.w    = e.w
 		mod.game.me.loc  = e.loc
 		mod.game.me.dest = e.dest
 		if ([0, 1, 5, 6].includes(e.type)) stopMoving = Date.now()
 		if ([2, 10].includes(e.type) && mod.settings.falling) return false // 高空坠落伤害
 	})
-	mod.hook('C_RETURN_TO_LOBBY', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_RETURN_TO_LOBBY', 1, e => {
 		if (Date.now() > (stopMoving+60*60*1000) && mod.settings.afker) return false
 	})
 	// 阻止 返回领地 AFKer
-	mod.tryHook('C_FIELD_EVENT_BAN', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.tryHook('C_FIELD_EVENT_BAN', 1, e => {
 		if (mod.settings.afker) return false
 	})
 	// 装备 强化概率
-	mod.hook('S_REGISTER_ENCHANT_ITEM', (Ver<95?3 : Ver<108?4 : 5), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REGISTER_ENCHANT_ITEM', (Ver<95?3 : Ver<108?4 : 5), e => {
 		if (!mod.settings.enchantChance) return
 		e.hideSuccessChance = false
 		return true
 	})
 	// 装备 升级概率
-	mod.hook('S_REGISTER_EVOLUTION_ITEM', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REGISTER_EVOLUTION_ITEM', 3, e => {
 		if (!mod.settings.evolutionChance) return
 		e.hideSuccessChance = false
 		return true
 	})
 	// 瞬间强化 Instant-Enchant
 	let enchanting = null
-	mod.hook('C_REGISTER_ENCHANT_ITEM', 1, DEFAULT_HOOK_SETTINGS, e => { enchanting = e })
-	mod.hook('C_START_ENCHANT', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_REGISTER_ENCHANT_ITEM', 1, e => { enchanting = e })
+	mod.hook('C_START_ENCHANT', 1, e => {
 		if (!mod.settings.instantEnchant || !enchanting || e.contract != enchanting.contract) return
 		mod.send('C_REQUEST_ENCHANT', 1, enchanting)
 		return false
 	})
-	mod.hook('C_REQUEST_ENCHANT', 1, DEFAULT_HOOK_SETTINGS, () => {
+	mod.hook('C_REQUEST_ENCHANT', 1, () => {
 		if (mod.settings.instantEnchant) return false
 	})
 	// 瞬间升级 Instant-Upgrade
 	let upgrading = null
-	mod.hook('C_REGISTER_EVOLUTION_ITEM', 1, DEFAULT_HOOK_SETTINGS, e => { upgrading = e })
-	mod.hook('C_START_EVOLUTION', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_REGISTER_EVOLUTION_ITEM', 1, e => { upgrading = e })
+	mod.hook('C_START_EVOLUTION', 1, e => {
 		if (!mod.settings.instantEvolution || !upgrading || e.contract != upgrading.contract) return
 		mod.send('C_REQUEST_EVOLUTION', 1, upgrading)
 		return false
 	})
-	mod.hook('C_REQUEST_EVOLUTION', 1, DEFAULT_HOOK_SETTINGS, () => {
+	mod.hook('C_REQUEST_EVOLUTION', 1, () => {
 		if (mod.settings.instantEvolution) return false
 	})
 	// 瞬间维修 Instant-Repair
@@ -523,42 +522,42 @@ module.exports = function TeraHelper(mod) {
 		['id',       'int32']
 	])
 	let repairing = null
-	mod.tryHook('C_REGISTER_REPAIR_ITEM', 1, DEFAULT_HOOK_SETTINGS, e => { repairing = e })
-	mod.tryHook('C_START_REPAIR_ITEM', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.tryHook('C_REGISTER_REPAIR_ITEM', 1, e => { repairing = e })
+	mod.tryHook('C_START_REPAIR_ITEM', 1, e => {
 		if (!mod.settings.instantRepair || !repairing || e.contract != repairing.contract) return
 		mod.trySend('C_REQUEST_REPAIR_ITEM', 1, repairing)
 		return false
 	})
-	mod.tryHook('C_REQUEST_REPAIR_ITEM', 1, DEFAULT_HOOK_SETTINGS, () => {
+	mod.tryHook('C_REQUEST_REPAIR_ITEM', 1, () => {
 		if (mod.settings.instantRepair) return false
 	})
 	// 瞬间绑定 Instant-Soulbind
-	mod.hook('C_BIND_ITEM_BEGIN_PROGRESS', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_BIND_ITEM_BEGIN_PROGRESS', 1, e => {
 		if (!mod.settings.instantSoulbind) return
 		mod.send('C_BIND_ITEM_EXECUTE', 1, { contractId: e.contractId })
 		process.nextTick(() => {
 			mod.send('S_CANCEL_CONTRACT', 1, { type: 32, id: e.contractId })
 		})
 	})
-	mod.hook('C_BIND_ITEM_EXECUTE', 1, DEFAULT_HOOK_SETTINGS, () => false)
+	mod.hook('C_BIND_ITEM_EXECUTE', 1, () => false)
 	// 瞬间合并 Instant-Merge
-	mod.hook('S_REQUEST_CONTRACT', (Ver<108?1 : 2), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REQUEST_CONTRACT', (Ver<108?1 : 2), e => {
 		if (!mod.settings.instantMerge || !mod.game.me.is(e.senderId) || e.type != 33) return
 		mod.send('C_MERGE_ITEM_EXECUTE', 1, { contractId: e.id })
 		process.nextTick(() => {
 			mod.send('S_CANCEL_CONTRACT', 1, { type: 33, id: e.id })
 		})
 	})
-	mod.hook('C_MERGE_ITEM_EXECUTE', 1, DEFAULT_HOOK_SETTINGS, () => false)
+	mod.hook('C_MERGE_ITEM_EXECUTE', 1, () => false)
 	// 瞬间分解 Instant-Dismantle
-	mod.hook('C_RQ_START_SOCIAL_ON_PROGRESS_DECOMPOSITION', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_RQ_START_SOCIAL_ON_PROGRESS_DECOMPOSITION', 1, e => {
 		if (!mod.settings.instantDismantle) return
 		mod.send('C_RQ_COMMIT_DECOMPOSITION_CONTRACT', 1, { contract: e.contract })
 		return false
 	})
-	mod.hook('C_RQ_COMMIT_DECOMPOSITION_CONTRACT', 1, DEFAULT_HOOK_SETTINGS, () => false)
+	mod.hook('C_RQ_COMMIT_DECOMPOSITION_CONTRACT', 1, () => false)
 	// 瞬间复活 Instant-Revive
-	mod.hook('S_CREATURE_LIFE', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_CREATURE_LIFE', 3, e => {
 		if (!mod.settings.instantRevive || !mod.game.me.is(e.gameId)) return
 		if (!e.alive) {
 			mod.send('S_ACTION_STAGE', 9, {
@@ -603,10 +602,10 @@ module.exports = function TeraHelper(mod) {
 	})
 	// 瞬间学满技能
 	let learnContract = null, learnGroup = null, learnLevel = null
-	mod.hook('C_SKILL_LEARN_LIST', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_SKILL_LEARN_LIST', 2, e => {
 		learnContract = e.contract
 	})
-	mod.hook('S_SKILL_LEARN_LIST', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SKILL_LEARN_LIST', 2, e => {
 		if (!mod.settings.instantLearn) return
 		e.skills.forEach(obj => {
 			if (Math.floor(obj.id/10000) != learnGroup) return
@@ -618,14 +617,14 @@ module.exports = function TeraHelper(mod) {
 			})
 		})
 	})
-	mod.hook('S_SKILL_LEARN_RESULT', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SKILL_LEARN_RESULT', 2, e => {
 		if (!mod.settings.instantLearn) return
 		learnGroup = Math.floor(e.newSkill / 10000)
 		learnLevel = Math.floor(e.newSkill / 100) % 100
 		if (e.success) mod.send('C_SKILL_LEARN_LIST', 2, { contract: learnContract })
 	})
 	// User-Effect
-	mod.hook('S_USER_EFFECT', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_USER_EFFECT', 1, e => {
 		if (e.circle==3 && e.operation==1) {
 			mod.send('S_PLAY_EFFECT', 1, {
 				gameId: mod.game.me.gameId,
@@ -640,23 +639,23 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	// 查看装备 Inspect
-	mod.hook('S_ANSWER_INTERACTIVE', (Ver<103?2 : 3), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_ANSWER_INTERACTIVE', (Ver<103?2 : 3), e => {
 		if (!mod.settings.viewUserInfo) return
 		mod.send('C_REQUEST_USER_PAPERDOLL_INFO', 3, { zoom: false, name: e.name })
 	})
 	// 跳过动画 Sutscene-Skip
-	mod.hook('S_PLAY_MOVIE', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_PLAY_MOVIE', 1, e => {
 		if (!mod.settings.skipMovie) return
 		mod.send('C_END_MOVIE', 1, { movie: e.movie, unk: true })
 		return false
 	})
 	// No-Cancel-Mote 元素HP/MP晶球蓄力技能 不会取消施法
-	mod.hook('C_CANCEL_SKILL', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_CANCEL_SKILL', 3, e => {
 		if (!mod.settings.noCancelMote || mod.game.me.job!=7) return
 		if ([18, 22].includes(Math.floor(e.skill.id/10000))) return false
 	})
 	// No-More-Wasted-Backstabs
-	mod.hook('C_START_TARGETED_SKILL', 7, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_START_TARGETED_SKILL', 7, e => {
 		if (!mod.settings.backstab || e.targets[0].gameId!=0n) return
 		if (!Set.backstabs[mod.game.me.job]) return
 		if (!Set.backstabs[mod.game.me.job][Math.floor(e.skill.id / 10000)]) return
@@ -665,25 +664,25 @@ module.exports = function TeraHelper(mod) {
 		return false
 	})
 	// 移除 被锁定绿字
-	mod.hook('S_LOCKON_YOU', 1, DEFAULT_HOOK_SETTINGS, () => {
+	mod.hook('S_LOCKON_YOU', 1, () => {
 		if (mod.settings.noLockYou) return false
 	})
 	// 移除 镜头缩放 / 传送门动画
-	mod.hook('S_START_ACTION_SCRIPT', 3, DEFAULT_HOOK_SETTINGS, () => {
+	mod.hook('S_START_ACTION_SCRIPT', 3, () => {
 		if (mod.settings.noActionScript) return false
 	})
 	// 移除 闲置动作
-	mod.hook('S_SOCIAL', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SOCIAL', 1, e => {
 		if (mod.settings.noSocialAnimation && [31, 32, 33].includes(e.animation)) return false
 	})
 	// 移除 屏幕扭曲
-	mod.hook('S_ABNORMALITY_BEGIN', (Ver<107?4 : 5), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_ABNORMALITY_BEGIN', (Ver<107?4 : 5), e => {
 		if (!mod.settings.noScreenEffect || !mod.game.me.is(e.target)) return
 		var abnormality = mod.game.data.abnormalities.get(e.id)
 		if (abnormality && abnormality.effects.some(effect => effect.type == 244)) return false
 	})
 	// 自动 领取红利
-	mod.hook('S_COMPLETE_EVENT_MATCHING_QUEST', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_COMPLETE_EVENT_MATCHING_QUEST', 1, e => {
 		if (!mod.settings.vanguard) return
 		mod.send('C_COMPLETE_DAILY_EVENT', 1, { id:e.id }) // 领取奖励
 		mod.send('C_COMPLETE_EXTRA_EVENT', 1, { type: 1 }) // 每日红利
@@ -691,7 +690,7 @@ module.exports = function TeraHelper(mod) {
 		return false
 	})
 	// 工会 接领任务
-	mod.hook('S_UPDATE_GUILD_QUEST_STATUS', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_UPDATE_GUILD_QUEST_STATUS', 1, e => {
 		if (!mod.settings.guildQuest || e.unk1!=2) return // 提交-完成任务
 		mod.setTimeout(() => { mod.trySend('C_REQUEST_FINISH_GUILD_QUEST', 1, { quest: e.quest }) }, 1000)
 		
@@ -699,13 +698,13 @@ module.exports = function TeraHelper(mod) {
 		mod.setTimeout(() => { mod.trySend('C_REQUEST_START_GUILD_QUEST', 1, { questId: e.quest }) }, 3000)
 	})
 	// 显示 弓箭陷阱
-	mod.hook('S_SPAWN_PROJECTILE', (Ver<105?5 : 6), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_PROJECTILE', (Ver<105?5 : 6), e => {
 		if (!mod.settings.archerTrap || mod.game.me.is(e.gameId) || !Set.archerTraps.includes(e.skill.id)) return
 		e.gameId = mod.game.me.gameId
 		return true
 	})
 	// 传送尾王
-	mod.hook('S_SPAWN_ME', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_ME', 3, e => {
 		if (!mod.settings.dungeon) return
 		Set.dungeonTP.forEach(obj => {
 			if (obj.Zone != mod.game.me.zone) return
@@ -716,15 +715,15 @@ module.exports = function TeraHelper(mod) {
 	})
 	// 无限 飞行能量
 	let outOfEnergy = false
-	mod.tryHook('S_CANT_FLY_ANYMORE', 1, DEFAULT_HOOK_SETTINGS, () => {
+	mod.tryHook('S_CANT_FLY_ANYMORE', 1, () => {
 		if (mod.settings.flyMore) return false
 	})
-	mod.hook('S_PLAYER_CHANGE_FLIGHT_ENERGY', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_PLAYER_CHANGE_FLIGHT_ENERGY', 1, e => {
 		if (!mod.settings.flyMore) return
 		outOfEnergy = e.energy === 0
 		return false
 	})
-	mod.hook('C_PLAYER_FLYING_LOCATION', 4, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_PLAYER_FLYING_LOCATION', 4, e => {
 		if (!mod.settings.flyMore || !outOfEnergy || e.type==7 || e.type==8) return
 		e.type = 7
 		e.dest.z = Math.min(e.loc.z, e.dest.z)
@@ -732,10 +731,10 @@ module.exports = function TeraHelper(mod) {
 	})
 	// 自动 喂养宠物 / 跟班
 	let servantInfo = null
-	mod.hook('S_REQUEST_SPAWN_SERVANT', 4, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REQUEST_SPAWN_SERVANT', 4, e => {
 		if (!servantInfo && mod.game.me.is(e.ownerId) && e.spawnType==0) servantInfo = e
 	})
-	mod.hook('S_REQUEST_DESPAWN_SERVANT', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_REQUEST_DESPAWN_SERVANT', 1, e => {
 		if (servantInfo && e.gameId==servantInfo.gameId && e.despawnType==0) servantInfo = null
 	})
 	mod.dispatch.addDefinition('S_UPDATE_SERVANT_INFO', 0, [
@@ -753,14 +752,14 @@ module.exports = function TeraHelper(mod) {
 		['fellowship', 'uint32']
 		// ...['unknow4', 'byte[77]']
 	])
-	mod.tryHook('S_UPDATE_SERVANT_INFO', 0, DEFAULT_HOOK_SETTINGS, e => {
+	mod.tryHook('S_UPDATE_SERVANT_INFO', 0, e => {
 		if (!mod.settings.autoServant || !servantInfo || e.dbid!=servantInfo.dbid || e.id!=servantInfo.id) return
 		if (e.energy/e.energyMax < mod.settings.servantUseAt/100) {
 			UseItem(e.type ? Set.servantGift : Set.servantFood)
 		}
 	})
 	
-	mod.hook('S_EACH_SKILL_RESULT', 14, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_EACH_SKILL_RESULT', 14, e => {
 		if (mod.settings.fakeBossGage && e.target==Set.GageInfo.id && e.type==1) {
 			Set.GageInfo.curHp -= e.value
 			UpdateGaga()
@@ -815,7 +814,7 @@ module.exports = function TeraHelper(mod) {
 	})
 	
 	// 标记采集物
-	mod.hook('S_SPAWN_COLLECTION', 4, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_COLLECTION', 4, e => {
 		if (!mod.settings.tipGather) return
 		Set.gatherInfo.forEach(obj => {
 			if (obj.id!=e.id || obj.category!=mod.settings.gatherCategory) return
@@ -827,7 +826,7 @@ module.exports = function TeraHelper(mod) {
 			})
 		})
 	})
-	mod.hook('S_DESPAWN_COLLECTION', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_DESPAWN_COLLECTION', 2, e => {
 		if (tipMarkers.has(e.gameId*100n)) {
 			tipMarkers.delete(e.gameId*100n)
 			RemoveMarker(e.gameId*100n)
@@ -839,7 +838,7 @@ module.exports = function TeraHelper(mod) {
 		['loc', 'vec3']
 	])
 	// NPC-Creature
-	mod.hook('S_SPAWN_NPC', (Ver<101?11 : 12), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_NPC', (Ver<101?11 : 12), e => {
 		if (mod.settings.logNPC) {
 			mod.queryData('/StrSheet_Creature/HuntingZone@id=?/String@templateId=?', [e.huntingZoneId, e.templateId]).then(result => {
 				if (result && result.attributes && result.attributes.name) {
@@ -906,7 +905,7 @@ module.exports = function TeraHelper(mod) {
 		Set.GageInfo.curHp = Set.GageInfo.maxHp
 		correctGage(e.hpLevel)
 	}
-	mod.hook('S_NPC_STATUS', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_NPC_STATUS', 2, e => {
 		if (!mod.settings.fakeGage || e.gameId!=Set.GageInfo.id) return
 		correctGage(e.hpLevel)
 		UpdateGaga()
@@ -922,10 +921,10 @@ module.exports = function TeraHelper(mod) {
 	function UpdateGaga() {
 		mod.send('S_BOSS_GAGE_INFO', 3, Set.GageInfo)
 	}
-	mod.hook('S_NPC_LOCATION', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_NPC_LOCATION', 3, e => {
 		
 	})
-	mod.hook('S_DESPAWN_NPC', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_DESPAWN_NPC', 3, e => {
 		if (e.gameId == Set.GageInfo.id) Set.GageInfo.id = 0n
 		
 		if (tipMarkers.has(e.gameId*100n)) {
@@ -939,7 +938,7 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	// 世界王
-	mod.hook('S_SYSTEM_MESSAGE', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SYSTEM_MESSAGE', 1, e => {
 		var msg = mod.parseSystemMessage(e.message)
 		if (msg.id == 'SMT_CANT_USE_ITEM_COOLTIME') return false
 		
@@ -978,7 +977,7 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	// 公会王
-	mod.hook('S_NOTIFY_GUILD_QUEST_URGENT', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_NOTIFY_GUILD_QUEST_URGENT', 1, e => {
 		Set.tipNPCs.forEach(obj => {
 			if (!obj.quest || obj.quest!=e.quest) return
 			TipMessage(`${e.type?'已刷新':'公会王'} - ${obj.name}`, 25)
@@ -988,36 +987,36 @@ module.exports = function TeraHelper(mod) {
 	
 	// Party-Members
 	let partyMembers = []
-	mod.hook('S_PARTY_MEMBER_LIST', (Ver<100?7 : Ver<106?8 : 9), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_PARTY_MEMBER_LIST', (Ver<100?7 : Ver<106?8 : 9), e => {
 		partyMembers = e.members
 	})
-	mod.hook('S_PARTY_MEMBER_STAT_UPDATE', (Ver<108? 3 : 4), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_PARTY_MEMBER_STAT_UPDATE', (Ver<108? 3 : 4), e => {
 		if (tipMarkers.has(e.playerId) && e.alive) {
 			RemoveMarker(e.playerId)
 			tipMarkers.delete(e.playerId)
 		}
 	})
-	mod.hook('S_BAN_PARTY_MEMBER', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_BAN_PARTY_MEMBER', 1, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
 		if (tipMarkers.has(e.playerId)) {
 			RemoveMarker(e.playerId)
 			tipMarkers.delete(e.playerId)
 		}
 	})
-	mod.hook('S_LEAVE_PARTY_MEMBER', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_LEAVE_PARTY_MEMBER', 2, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
 		if (tipMarkers.has(e.playerId)) {
 			RemoveMarker(e.playerId)
 			tipMarkers.delete(e.playerId)
 		}
 	})
-	mod.hook('S_LEAVE_PARTY', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_LEAVE_PARTY', 1, e => {
 		partyMembers = []
 		RemoveAllMarkers(tipMarkers)
 	})
 	
 	// User-Player
-	mod.hook('S_SPAWN_USER', (Ver<93?15 : Ver<105?16 : 17), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_USER', (Ver<93?15 : Ver<105?16 : 17), e => {
 		// 尸体标记
 		if (mod.settings.deadMark) {
 			partyMembers.forEach(member => {
@@ -1048,7 +1047,7 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	// 尸体标记
-	mod.hook('S_DEAD_LOCATION', 2, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_DEAD_LOCATION', 2, e => {
 		if (mod.settings.deadMark) {
 			partyMembers.forEach(member => {
 				if (member.gameId != e.gameId || mod.game.me.is(e.gameId)) return
@@ -1057,7 +1056,7 @@ module.exports = function TeraHelper(mod) {
 			})
 		}
 	})
-	mod.hook('S_DESPAWN_USER', 3, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_DESPAWN_USER', 3, e => {
 		partyMembers.forEach(member => {
 			if (member.gameId != e.gameId) return
 			RemoveMarker(member.playerId)
@@ -1107,7 +1106,7 @@ module.exports = function TeraHelper(mod) {
 			mod.command.message("参数错误!!")
 		}
 	})
-	mod.hook('S_SPAWN_DROPITEM', (Ver<99?8 : 9), DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_SPAWN_DROPITEM', (Ver<99?8 : 9), e => {
 		if (mod.settings.ignoreItem && Set.ignoreItems.includes(e.item)) return false
 		if (mod.settings.filterMode==0 && Set.filterLoot.includes(e.item)) return
 		dropItems.set(e.gameId, e.loc)
@@ -1115,11 +1114,11 @@ module.exports = function TeraHelper(mod) {
 			loop = mod.setInterval(startLoot, mod.settings.lootDelay)
 		}
 	})
-	mod.hook('S_DESPAWN_DROPITEM', 4, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_DESPAWN_DROPITEM', 4, e => {
 		dropItems.delete(e.gameId)
 		if (dropItems.size == 0) stopLoot()
 	})
-	mod.hook('C_TRY_LOOT_DROPITEM', 4, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('C_TRY_LOOT_DROPITEM', 4, e => {
 		if (mod.settings.autoLoot && !loop && mod.settings.lootMode==1) {
 			loop = mod.setInterval(startLoot, mod.settings.lootDelay)
 		}
@@ -1165,7 +1164,7 @@ module.exports = function TeraHelper(mod) {
 	mpPotList.sort(function (a, b) { return parseFloat(b.use_at) - parseFloat(a.use_at) })
 	
 	let useHpPot = null
-	mod.hook('S_CREATURE_CHANGE_HP', 6, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_CREATURE_CHANGE_HP', 6, e => {
 		if (!mod.settings.autoHpPot || !mod.game.me.is(e.target) || !mod.game.me.alive) return
 		mod.game.me.hp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
 		
@@ -1185,7 +1184,7 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	let useMpPot = null
-	mod.hook('S_PLAYER_CHANGE_MP', 1, DEFAULT_HOOK_SETTINGS, e => {
+	mod.hook('S_PLAYER_CHANGE_MP', 1, e => {
 		if (!mod.settings.autoMpPot || !mod.game.me.is(e.target)|| !mod.game.me.alive) return
 		mod.game.me.mp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
 		
