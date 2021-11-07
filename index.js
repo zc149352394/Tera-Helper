@@ -6,10 +6,17 @@ const Vec3 = require('tera-vec3')
 const Notifier = require('node-notifier')
 const UI = require('tera-mod-ui').Settings
 
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+	fs.mkdirSync(path.join(__dirname, 'data'));
+}
+function saveJsonData(pathToFile, data) {
+	fs.writeFileSync(path.join(__dirname, pathToFile), JSON.stringify(data, null, "\t"));
+}
 function reloadFile(fileName) {
 	delete require.cache[require.resolve(fileName)]
 	return require(fileName)
 }
+
 function getTime(thisTime) {
 	var Time = new Date(thisTime)
 	return	add_0(Time.getMonth()+1) + "/" + add_0(Time.getDate()) + " " +
@@ -19,22 +26,11 @@ function add_0(i) {
 	if (i < 10) i = "0" + i
 	return i
 }
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-	fs.mkdirSync(path.join(__dirname, 'data'));
-}
-function saveJsonData(pathToFile, data) {
-	fs.writeFileSync(path.join(__dirname, pathToFile), JSON.stringify(data, null, "\t"));
-}
 
 module.exports = function TeraHelper(mod) {
-	const Ver = mod.majorPatchVersion
-	mod.game.initialize('me')
-	mod.game.initialize('me.abnormalities')
-	mod.game.initialize('inventory')
-	
 	let tipMarkers = new Map()
 	let Set = reloadFile('./User_Settings.js')
-	
+	const Ver = mod.majorPatchVersion
 	// 增加自定义映射码 add_Opcode
 	const proVer = mod.clientInterface.info.protocolVersion
 	for (var code in Set.opcodes[proVer]) {
@@ -56,6 +52,16 @@ module.exports = function TeraHelper(mod) {
 			})
 		})
 	}
+	
+	mod.game.initialize('me')
+	mod.game.initialize('me.abnormalities')
+	mod.game.initialize('inventory')
+	mod.game.inventory.on('update', () => {
+		mod.game.inventory.bagItems.forEach(item => {
+			if (mod.settings.autoUse && Set.autoUseItems.includes(item.id)) UseItem(item.id)
+		})
+	})
+	
 	// 镜头抖动
 	mod.clientInterface.configureCameraShake(mod.settings.camShake)
 	// Cmd-Slash
@@ -409,7 +415,17 @@ module.exports = function TeraHelper(mod) {
 	})
 	// 重置副本
 	mod.hook('S_VOTE_RESET_ALL_DUNGEON', 1, e => {
-		notifierMsg(`重置副本!!`, `重置副本`, '02.png')
+		notifierMsg(`投票事件!!`, `重置副本`, '02.png')
+		if (mod.settings.restDungeon && mod.game.me.isLeader) return
+		mod.send('C_VOTE_RESET_ALL_DUNGEON', 1, { accept: true })
+		mod.command.message("同意-重置副本")
+	})
+	// 自动接受 道具分配
+	mod.hook('S_PARTY_LOOTING_METHOD_VOTE', 1, e => {
+		notifierMsg(`投票事件!!`, `分配变更`, '02.png')
+		if (mod.settings.lootingMethod && e.isLeader) return
+		mod.send('C_PARTY_LOOTING_METHOD_VOTE', 1, { accept: true })
+		mod.command.message("同意-道具分配")
 	})
 	// 密语消息
 	mod.hook('S_WHISPER', (Ver<108?3 : 4), e => {
@@ -430,6 +446,10 @@ module.exports = function TeraHelper(mod) {
 	// 组队邀请
 	mod.hook('S_BEGIN_THROUGH_ARBITER_CONTRACT', (Ver<109? 1 : 2), e => {
 		notifierMsg(`<${e.sender}>\n邀请你进入[组队].` , `组队通知`, 'group.png')
+		// e.response = 1
+		// e.recipient = e.sender
+		// mod.send('C_REPLY_THROUGH_ARBITER_CONTRACT', 1, e)
+		// mod.command.message("接受 [" + e.sender + "] 的组队邀请")
 	})
 	// 组队召唤
 	mod.hook('S_ASK_TELEPORT', 1, e => {
@@ -709,7 +729,7 @@ module.exports = function TeraHelper(mod) {
 		Set.dungeonTP.forEach(obj => {
 			if (obj.Zone != mod.game.me.zone) return
 			e.loc = obj.loc
-			e.w = Math.PI/obj.w
+			e.w = obj.w * Math.PI
 		})
 		return true
 	})
@@ -787,27 +807,14 @@ module.exports = function TeraHelper(mod) {
 			}, 200)
 		}
 		// 移除 屏显数字
-		/* if (e.type == 1) {
-			if (mod.settings.damageNumber   && !mod.game.me.is(e.target)) e.type = 0 // 输出伤害
-			if (mod.settings.damageNumberMe &&  mod.game.me.is(e.target)) e.type = 0 // 掉血伤害
-		}
-		if (e.type == 2) {
-			if (mod.settings.healNumber   && !mod.game.me.is(e.target)) e.type = 0 // 治疗队员
-			if (mod.settings.healNumberMe &&  mod.game.me.is(e.target)) e.type = 0 // 治疗自己
-		}
-		if (e.type == 3) {
-			if (mod.settings.mpNumber   && !mod.game.me.is(e.target)) e.type = 0 // 回蓝队员
-			if (mod.settings.mpNumberMe &&  mod.game.me.is(e.target)) e.type = 0 // 回蓝自己
-		} */
-		
 		if (mod.game.me.is(e.target)) {
-			if (e.type == 1 && mod.settings.damageNumberMe) e.type = 0 // 掉血伤害
-			if (e.type == 2 && mod.settings.healNumberMe) e.type = 0 // 治疗自己
-			if (e.type == 3 && mod.settings.mpNumberMe) e.type = 0 // 回蓝自己
+			if (e.type == 1 && !mod.settings.damageNumberMe) e.type = 0 // 掉血伤害
+			if (e.type == 2 && !mod.settings.healNumberMe) e.type = 0 // 治疗自己
+			if (e.type == 3 && !mod.settings.mpNumberMe) e.type = 0 // 回蓝自己
 		} else {
-			if (e.type == 1 && mod.settings.damageNumber) e.type = 0 // 输出伤害
-			if (e.type == 2 && mod.settings.healNumber) e.type = 0 // 治疗队员
-			if (e.type == 3 && mod.settings.mpNumber) e.type = 0 // 回蓝队员
+			if (e.type == 1 && !mod.settings.damageNumber) e.type = 0 // 输出伤害
+			if (e.type == 2 && !mod.settings.healNumber) e.type = 0 // 治疗队员
+			if (e.type == 3 && !mod.settings.mpNumber) e.type = 0 // 回蓝队员
 		}
 		
 		return true
@@ -839,7 +846,7 @@ module.exports = function TeraHelper(mod) {
 	])
 	// NPC-Creature
 	mod.hook('S_SPAWN_NPC', (Ver<101?11 : 12), e => {
-		if (mod.settings.logNPC) {
+		if (mod.settings.logNPC && e.huntingZoneId!=1023) {
 			mod.queryData('/StrSheet_Creature/HuntingZone@id=?/String@templateId=?', [e.huntingZoneId, e.templateId]).then(result => {
 				if (result && result.attributes && result.attributes.name) {
 					mod.command.message(`Spawned NPC | ${e.huntingZoneId}_${e.templateId} | "${result.attributes.name}" | ${e.shapeId}`)
@@ -986,9 +993,17 @@ module.exports = function TeraHelper(mod) {
 	})
 	
 	// Party-Members
+	mod.hook('S_CHANGE_PARTY_MANAGER', 2, e => {
+		mod.game.me.isLeader = (mod.game.me.playerId == e.playerId)
+	})
 	let partyMembers = []
 	mod.hook('S_PARTY_MEMBER_LIST', (Ver<100?7 : Ver<106?8 : 9), e => {
 		partyMembers = e.members
+		if (partyMembers.find(p => p.playerId == mod.game.me.playerId)) {
+			mod.game.me.isLeader = true
+		} else {
+			mod.game.me.isLeader = false
+		}
 	})
 	mod.hook('S_PARTY_MEMBER_STAT_UPDATE', (Ver<108? 3 : 4), e => {
 		if (tipMarkers.has(e.playerId) && e.alive) {
@@ -997,6 +1012,13 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	mod.hook('S_BAN_PARTY_MEMBER', 1, e => {
+		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
+		if (tipMarkers.has(e.playerId)) {
+			RemoveMarker(e.playerId)
+			tipMarkers.delete(e.playerId)
+		}
+	})
+	mod.hook('S_LOGOUT_PARTY_MEMBER', 1, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
 		if (tipMarkers.has(e.playerId)) {
 			RemoveMarker(e.playerId)
@@ -1055,6 +1077,13 @@ module.exports = function TeraHelper(mod) {
 				tipMarkers.set(member.playerId, e.loc)
 			})
 		}
+		
+		if (!mod.game.me.is(e.gameId)) return
+		// 自动喝药水
+		if (!useHpPot._destroyed) mod.clearInterval(useHpPot)
+		if (!useMpPot._destroyed) mod.clearInterval(useMpPot)
+		// 自动金币复活
+		if (mod.settings.autoRevive) mod.setTimeout(() => { mod.send('C_REVIVE_NOW', 2, { type: 6, id: 4294967295 }) }, 1000)
 	})
 	mod.hook('S_DESPAWN_USER', 3, e => {
 		partyMembers.forEach(member => {
@@ -1087,7 +1116,7 @@ module.exports = function TeraHelper(mod) {
 	
 	// Auto-Loot
 	let dropItems = new Map()
-	let loop = null
+	let loop = { _destroyed: true }
 	mod.command.add("loot", (arg) => {
 		if (arg) {
 			var linkItemId = getItemIdChatLink(arg)
@@ -1109,8 +1138,10 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_SPAWN_DROPITEM', (Ver<99?8 : 9), e => {
 		if (mod.settings.ignoreItem && Set.ignoreItems.includes(e.item)) return false
 		if (mod.settings.filterMode==0 && Set.filterLoot.includes(e.item)) return
+		if (e.item>=89333 && e.item<=89508) return
+		
 		dropItems.set(e.gameId, e.loc)
-		if (mod.settings.autoLoot && !loop && mod.settings.lootMode==0) {
+		if (mod.settings.autoLoot && loop._destroyed && mod.settings.lootMode==0) {
 			loop = mod.setInterval(startLoot, mod.settings.lootDelay)
 		}
 	})
@@ -1119,7 +1150,7 @@ module.exports = function TeraHelper(mod) {
 		if (dropItems.size == 0) stopLoot()
 	})
 	mod.hook('C_TRY_LOOT_DROPITEM', 4, e => {
-		if (mod.settings.autoLoot && !loop && mod.settings.lootMode==1) {
+		if (mod.settings.autoLoot && loop._destroyed && mod.settings.lootMode==1) {
 			loop = mod.setInterval(startLoot, mod.settings.lootDelay)
 		}
 	})
@@ -1132,8 +1163,7 @@ module.exports = function TeraHelper(mod) {
 		}
 	}
 	function stopLoot() {
-		if (loop) mod.clearInterval(loop)
-		loop = null
+		if (!loop._destroyed) mod.clearInterval(loop)
 		dropItems.clear()
 	}
 	function getItemIdChatLink(chatLink) {
@@ -1163,18 +1193,17 @@ module.exports = function TeraHelper(mod) {
 	hpPotList.sort(function (a, b) { return parseFloat(b.use_at) - parseFloat(a.use_at) })
 	mpPotList.sort(function (a, b) { return parseFloat(b.use_at) - parseFloat(a.use_at) })
 	
-	let useHpPot = null
+	let useHpPot = { _destroyed: true }
 	mod.hook('S_CREATURE_CHANGE_HP', 6, e => {
 		if (!mod.settings.autoHpPot || !mod.game.me.is(e.target) || !mod.game.me.alive) return
 		mod.game.me.hp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
 		
-		if (!useHpPot && mod.game.me.hp<hpPotList[0].use_at) {
+		if (!useHpPot._destroyed) return
+		if (mod.game.me.hp<hpPotList[0].use_at) {
 			raiseHp()
 			useHpPot = mod.setInterval(raiseHp, 1000)
-		}
-		if (useHpPot && mod.game.me.hp>hpPotList[0].use_at) {
+		} else {
 			mod.clearInterval(useHpPot)
-			useHpPot = null
 		}
 	})
 	function raiseHp() {
@@ -1183,18 +1212,17 @@ module.exports = function TeraHelper(mod) {
 			if (mod.game.me.hp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
 		})
 	}
-	let useMpPot = null
+	let useMpPot = { _destroyed: true }
 	mod.hook('S_PLAYER_CHANGE_MP', 1, e => {
-		if (!mod.settings.autoMpPot || !mod.game.me.is(e.target)|| !mod.game.me.alive) return
+		if (!mod.settings.autoMpPot || !mod.game.me.is(e.target) || !mod.game.me.alive) return
 		mod.game.me.mp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
 		
-		if (!useMpPot && mod.game.me.hp<mpPotList[0].use_at) {
+		if (!useMpPot._destroyed) return
+		if (mod.game.me.hp<mpPotList[0].use_at) {
 			raiseMp()
 			useMpPot = mod.setInterval(raiseMp, 1000)
-		}
-		if (useMpPot && mod.game.me.mp>hpPotList[0].use_at) {
+		} else {
 			mod.clearInterval(useMpPot)
-			useMpPot = null
 		}
 	})
 	function raiseMp() {
@@ -1241,6 +1269,31 @@ module.exports = function TeraHelper(mod) {
 			// actions: ['OK', 'Cancel'],
 		})
 	}
+	
+	let boss_ID = 0
+	mod.hook('S_BOSS_GAGE_INFO', 3, e => {
+		if (boss_ID && boss_ID==e.id) return
+		boss_ID = e.id
+		if (mod.settings.logBoss) mod.log(`S_BOSS_GAGE_INFO|${e.huntingZoneId}|${e.templateId}`)
+	})
+	mod.hook('S_ACTION_STAGE', 9, e => {
+		if (!mod.settings.logBoss || !boss_ID || boss_ID!=e.gameId) return
+		mod.command.message(`ACTION|${e.skill.huntingZoneId}|${e.templateId}|${e.skill.id}|${e.stage}`)
+	})
+	mod.hook('S_DUNGEON_EVENT_MESSAGE', 2, e => {
+		if (!mod.settings.D_Message) return
+		var msg_Id = parseInt(e.message.match(/\d+/ig)) % 1000
+		mod.command.message("D-Message: " + e.message + " | " + msg_Id)
+	})
+	mod.hook('S_QUEST_BALLOON', 1, e => {
+		if (!mod.settings.Q_Balloon) return
+		var msg_Id = parseInt(e.message.match(/\d+/ig)) % 1000
+		mod.command.message("Q-Balloon: " + e.message + " | " + msg_Id)
+	})
+	mod.hook('S_SPAWN_PROJECTILE', (Ver<101?5 : 6), e => {
+		if (!mod.settings.projectile || boss_ID != e.gameId) return
+		mod.command.message("Spawn-Projec: [" + e.gameId + "] " + e.id + "_" + e.skill.id)
+	})
 	
 	this.destructor = () => {
 		if (ui) { ui.close(), ui = null }

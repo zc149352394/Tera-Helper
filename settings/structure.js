@@ -10,6 +10,7 @@ module.exports = [
 	{key: "filterMode", name: `拾取模式`, type: "select", options: [{name: "过滤拾取",key: 0}, {name: "全部拾取",key: 1}]},
 	{key: "lootMode",   name: `触发方式`, type: "select", options: [{name: "自动开始",key: 0}, {name: "手动开始",key: 1}]},
 	{key: "ignoreItem", name: `屏蔽-掉落物品`, type: "bool"},
+	{key: "autoUse",    name: `使用-拾取物品`, type: "bool"},
 
 	{key: "distance", name: `摄像机 距离`, type: "number", min: 1.0, max: 99999999.0, step: 1.0},
 	{key: "fovValue", name: `摄像机 广角`, type: "range",  min: 30.0, max: 120.0, step: 1.0},
@@ -17,9 +18,6 @@ module.exports = [
 
 	{key: "dungeon", name: `副本尾王`, type: "bool"},
 	{key: "flyMore", name: `无限飞行`, type: "bool"},
-
-	{key: "logNPC",  name: `查询 Spawn_Npc`, type: "bool"},
-	{key: "logItemId", name: `查询 Item_Id`, type: "bool"},
 
 	{key: "enchantChance",   name: `显示强化几率(如果可用)`, type: "bool"},
 	{key: "evolutionChance", name: `显示升级几率(如果可用)`, type: "bool"},
@@ -31,6 +29,10 @@ module.exports = [
 	{key: "instantMerge",     name: `瞬间 完成合并`, type: "bool"},
 	{key: "instantDismantle", name: `瞬间 完成分解`, type: "bool"},
 
+	{key: "restDungeon",   name: `副本重置 自动投票`, type: "bool"},
+	{key: "lootingMethod", name: `分配变更 自动投票`, type: "bool"},
+
+	{key: "autoRevive",    name: `自动 金币复活`, type: "bool"},
 	{key: "instantRevive", name: `瞬间 复活起身`, type: "bool"},
 	{key: "instantLearn",  name: `瞬间 学满技能`, type: "bool"},
 
@@ -68,6 +70,8 @@ module.exports = [
 	{key: "tipNPC",   name: `光柱标记-NPC`, type: "bool"},
 	{key: "deadMark", name: `光柱标记-队友尸体`, type: "bool"},
 
+	{key: "fakeBossGage", name: `伪造血条(奥勒昙/哈迦叻/盖洛司)`, type: "bool"},
+
 	{key: "tipGather",  name: `光柱标记-采集物`, type: "bool"},
 	{key: "gatherCategory", name: "采集物 类型", type: "select",
 		options: [
@@ -80,7 +84,12 @@ module.exports = [
 		]
 	},
 
-	{key: "fakeBossGage", name: `伪造血条(奥勒昙/哈迦叻/盖洛司)`, type: "bool"},
+	{key: "logNPC",    name: `查询 Spawn_Npc`, type: "bool"},
+	{key: "logItemId", name: `查询 Item_Id`, type: "bool"},
+	{key: "logBoss",   name: `查询 Boss_Skill`, type: "bool"},
+	{key: "D_Message", name: `查询 D_Message`, type: "bool"},
+	{key: "Q_Balloon", name: `查询 Q_Balloon`, type: "bool"},
+	{key: "projectile",name: `查询 Projectile`, type: "bool"},
 
 	{key: "hideTank",    name: `屏蔽坦克(!re 手动刷新)`, type: "bool"},
 	{key: "hideDps",     name: `屏蔽打手(!re 手动刷新)`, type: "bool"},

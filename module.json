@@ -7,7 +7,7 @@
         "reloadable": true,
         "settingsFile": "config.json",
         "settingsMigrator": "./settings/migrator.js",
-        "settingsVersion": 1
+        "settingsVersion": 2
     },
     "author": "ZC",
     "description": "这个B很懒, 什么都没留下...",

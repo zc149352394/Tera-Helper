@@ -6,20 +6,18 @@ const DefaultSettings = {
 	"servantUseAt": 50,
 
 	"autoLoot": true,
-	"lootDelay": 200,
+	"lootDelay": 50,
 	"filterMode": 1,
 	"lootMode": 1,
 	"ignoreItem": true,
+	"autoUse": false,
 
 	"distance": 20,
-	"fovValue": 72.55,
+	"fovValue": 71,
 	"camShake": false,
 
 	"dungeon": true,
 	"flyMore": true,
-
-	"logNPC": false,
-	"logItemId": false,
 
 	"enchantChance": true,
 	"evolutionChance": true,
@@ -31,6 +29,10 @@ const DefaultSettings = {
 	"instantMerge": true,
 	"instantDismantle": true,
 
+	"restDungeon": true,
+	"lootingMethod" : true,
+
+	"autoRevive": true,
 	"instantRevive": true,
 	"instantLearn": true,
 
@@ -68,10 +70,17 @@ const DefaultSettings = {
 	"tipNPC": true,
 	"deadMark": true,
 
+	"fakeBossGage": true,
+
 	"tipGather": false,
 	"gatherCategory": 0,
 
-	"fakeBossGage": true,
+	"logNPC": false,
+	"logItemId": false,
+	"logBoss": false,
+	"D_Message": false,
+	"Q_Balloon": false,
+	"projectile": false,
 
 	"hideTank": false,
 	"hideDps": false,
