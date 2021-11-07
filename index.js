@@ -122,6 +122,7 @@ module.exports = function TeraHelper(mod) {
 		mod.log("[inBattleground] "+mod.game.me.inBattleground)
 		mod.log("[inDungeon] "     +mod.game.me.inDungeon)
 		mod.log("[inCivilUnrest] " +mod.game.me.inCivilUnrest)
+		mod.log("[isLeader] "      +mod.game.me.isLeader)
 	})
 	mod.command.add("info", () => {
 		// mod.log(mod.clientInterface.info)
@@ -416,14 +417,14 @@ module.exports = function TeraHelper(mod) {
 	// 重置副本
 	mod.hook('S_VOTE_RESET_ALL_DUNGEON', 1, e => {
 		notifierMsg(`投票事件!!`, `重置副本`, '02.png')
-		if (mod.settings.restDungeon && mod.game.me.isLeader) return
+		if (!mod.settings.restDungeon || mod.game.me.isLeader) return
 		mod.send('C_VOTE_RESET_ALL_DUNGEON', 1, { accept: true })
 		mod.command.message("同意-重置副本")
 	})
 	// 自动接受 道具分配
 	mod.hook('S_PARTY_LOOTING_METHOD_VOTE', 1, e => {
 		notifierMsg(`投票事件!!`, `分配变更`, '02.png')
-		if (mod.settings.lootingMethod && e.isLeader) return
+		if (!mod.settings.lootingMethod || e.isLeader) return
 		mod.send('C_PARTY_LOOTING_METHOD_VOTE', 1, { accept: true })
 		mod.command.message("同意-道具分配")
 	})
@@ -999,7 +1000,7 @@ module.exports = function TeraHelper(mod) {
 	let partyMembers = []
 	mod.hook('S_PARTY_MEMBER_LIST', (Ver<100?7 : Ver<106?8 : 9), e => {
 		partyMembers = e.members
-		if (partyMembers.find(p => p.playerId == mod.game.me.playerId)) {
+		if (mod.game.me.playerId == e.leaderPlayerId) {
 			mod.game.me.isLeader = true
 		} else {
 			mod.game.me.isLeader = false
