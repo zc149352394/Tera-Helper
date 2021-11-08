@@ -704,7 +704,7 @@ module.exports = function TeraHelper(mod) {
 	})
 	// 自动 领取红利
 	mod.hook('S_COMPLETE_EVENT_MATCHING_QUEST', 1, e => {
-		if (!mod.settings.vanguard) return
+		if (!mod.settings.vanguard || mod.game.me.inBattleground) return
 		mod.send('C_COMPLETE_DAILY_EVENT', 1, { id:e.id }) // 领取奖励
 		mod.send('C_COMPLETE_EXTRA_EVENT', 1, { type: 1 }) // 每日红利
 		mod.send('C_COMPLETE_EXTRA_EVENT', 1, { type: 0 }) // 每周红利
@@ -1159,7 +1159,7 @@ module.exports = function TeraHelper(mod) {
 		for (var item of dropItems) {
 			if (mod.game.me.loc && getDistance(mod.game.me.loc, item[1]) < 100) {
 				mod.send('C_TRY_LOOT_DROPITEM', 4, { gameId: item[0] })
-				break
+				continue
 			}
 		}
 	}
@@ -1208,7 +1208,7 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	function raiseHp() {
-		if (mod.game.me.mounted) return
+		if (mod.game.me.mounted || mod.game.me.inBattleground) return
 		hpPotList.forEach(item => {
 			if (mod.game.me.hp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
 		})
@@ -1227,7 +1227,7 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	function raiseMp() {
-		if (mod.game.me.mounted) return
+		if (mod.game.me.mounted || mod.game.me.inBattleground) return
 		mpPotList.forEach(item => {
 			if (mod.game.me.hp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
 		})
@@ -1294,6 +1294,15 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_SPAWN_PROJECTILE', (Ver<101?5 : 6), e => {
 		if (!mod.settings.projectile || boss_ID != e.gameId) return
 		mod.command.message("Spawn-Projec: [" + e.gameId + "] " + e.id + "_" + e.skill.id)
+	})
+	
+	mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, e => {
+		mod.game.me.reputation = e.vanguardCredits
+	})
+	mod.hook('S_SEND_CHANGE_REPUTATION_POINT', 1, e => {
+		if (e.id == 609) mod.game.me.reputation += e.amount
+		if (!mod.settings.logReputation) return
+		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
 	})
 	
 	this.destructor = () => {

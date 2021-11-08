@@ -82,6 +82,8 @@ const DefaultSettings = {
 	"Q_Balloon": false,
 	"projectile": false,
 
+	"logReputation": false,
+
 	"hideTank": false,
 	"hideDps": false,
 	"hideHeal": false,
