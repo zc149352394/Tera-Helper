@@ -16,8 +16,8 @@ module.exports = [
 	{key: "fovValue", name: `摄像机 广角`, type: "range",  min: 30.0, max: 120.0, step: 1.0},
 	{key: "camShake", name: `摄像机 抖动`, type: "bool"},
 
-	{key: "dungeon", name: `副本尾王`, type: "bool"},
-	{key: "flyMore", name: `无限飞行`, type: "bool"},
+	{key: "dungeon", name: `副本 尾王传送`, type: "bool"},
+	{key: "flyMore", name: `无限 飞行能量`, type: "bool"},
 
 	{key: "enchantChance",   name: `显示强化几率(如果可用)`, type: "bool"},
 	{key: "evolutionChance", name: `显示升级几率(如果可用)`, type: "bool"},

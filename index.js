@@ -1137,6 +1137,8 @@ module.exports = function TeraHelper(mod) {
 		}
 	})
 	mod.hook('S_SPAWN_DROPITEM', (Ver<99?8 : 9), e => {
+		if (!e.owners.includes(mod.game.me.playerId)) return
+		
 		if (mod.settings.ignoreItem && Set.ignoreItems.includes(e.item)) return false
 		if (mod.settings.filterMode==0 && Set.filterLoot.includes(e.item)) return
 		if (e.item>=89333 && e.item<=89508) return
@@ -1302,6 +1304,10 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_SEND_CHANGE_REPUTATION_POINT', 1, e => {
 		if (e.id == 609) mod.game.me.reputation += e.amount
 		if (!mod.settings.logReputation) return
+		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
+	})
+	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
+		if (e.button == 609) mod.game.me.reputation = tokens
 		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
 	})
 	
