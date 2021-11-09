@@ -1307,7 +1307,7 @@ module.exports = function TeraHelper(mod) {
 		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
 	})
 	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
-		if (e.button == 609) mod.game.me.reputation = tokens
+		if (e.button == 609) mod.game.me.reputation = e.tokens
 		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
 	})
 	
