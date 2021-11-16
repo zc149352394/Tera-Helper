@@ -177,7 +177,7 @@ module.exports = {
 		{Zone: 9713, loc: {x: -99606, y:  58812, z:  8024}, w:  0.5, name: "奇丽安森林(尾王)"},
 		{Zone: 9714, loc: {x: -10644, y:  -7847, z: -9855}, w: -0.5, name: "付费专用空间(已重置副本)"},
 		{Zone: 9716, loc: {x:  49504, y: 129121, z:  3722}, w: -0.5, name: "飞艇下级 - 尾王"},
-		{Zone: 9916, loc: {x:  50208, y: 128483, z:  3713}, w: -0.5, name: "飞艇上级 - 尾王)"},
+		{Zone: 9916, loc: {x:  49502, y: 128693, z:  3713}, w: -0.5, name: "飞艇上级 - 尾王)"},
 	//  {Zone: 9777, loc: {x:-112673, y: -34856, z:   470}, w:  0.5, name: "古代地下水道 - 尾王"},
 	//  {Zone: 9781, loc: {x:  39419, y:-113077, z: 17212}, w:  0.5, name: "贝里克下级 - 尾王"},
 		{Zone: 9739, loc: {x:  53847, y: -92865, z:  1378}, w:  0.7, name: "革命团-2王"},
@@ -292,6 +292,8 @@ module.exports = {
 		{Zone: 759, id:  200, name: "恶灵岛上级 2号门"},
 		{Zone: 759, id:  210, name: "恶灵岛上级 2号门"},
 		{Zone: 759, id:  211, name: "恶灵岛上级 3号门"},
+		
+		{Zone: 950, id: 3018, name: "龙本P3-后方封路火墙"},
 		
 		{Zone: 1023, id: 12345, name: "後方移動術 I"},
 		
@@ -452,8 +454,8 @@ module.exports = {
 		// 阿勒坤祭司的精髓
 		1:  602172, // 枪骑
 		10: 602172, // 拳师
-		6:  602172, // 祭师
-		7:  602172, // 元素
+		6:  602174, // 祭师
+		7:  602174, // 元素
 		// 貝利卡宴會紀念幣
 		0:  88704, // 双刀
 		2:  88704, // 大剑
@@ -496,13 +498,19 @@ module.exports = {
 		98683, // 加工的礦物
 		98697, // 亞斯蘭的腳爪
 		
-		602172, // 阿勒坤祭司的精髓
-		602174, // 阿勒坤祭司的精髓
+		98666, // 技能鍛鍊卷軸 I
+		98667, // 技能屬性開放卷軸 I
+		98668, // 技能鍛鍊卷軸 II
+		98669, // 技能屬性開放卷軸 II
+		98670, // 技能鍛鍊卷軸 III
 		
 		98850, // 技能鍛鍊經驗值書籍 (小型)
 		98851, // 技能鍛鍊經驗值書籍 (中型)
 		98852, // 技能鍛鍊經驗值書籍 (大型)
 		98853, // 技能鍛鍊經驗值書籍 (超大型)
+		
+		602172, // 阿勒坤祭司的精髓
+		602174, // 阿勒坤祭司的精髓
 		
 		209901, // 技能鍛鍊經驗值書籍 I
 		209902, // 技能鍛鍊經驗值書籍 II
@@ -537,6 +545,25 @@ module.exports = {
 		88916, // 生鏽的憤怒手裏劍
 		88917, // 生鏽的憤怒月光刀
 		
+		88931, // 生鏽的金屬重甲
+		88932, // 生鏽的金屬輕甲
+		88933, // 生鏽的金屬布甲
+		88934, // 生鏽的金屬重甲手套
+		88935, // 生鏽的金屬輕甲手套
+		88936, // 生鏽的金屬布甲手套
+		88937, // 生鏽的金屬重甲鞋子
+		88938, // 生鏽的金屬輕甲鞋子
+		88939, // 生鏽的金屬布甲鞋子
+		88940, // 生鏽的憤怒重甲
+		88941, // 生鏽的憤怒輕甲
+		88942, // 生鏽的憤怒布甲
+		88943, // 生鏽的憤怒重甲手套
+		88944, // 生鏽的憤怒輕甲手套
+		88945, // 生鏽的憤怒布甲手套
+		88946, // 生鏽的憤怒重甲鞋子
+		88947, // 生鏽的憤怒輕甲鞋子
+		88948, // 生鏽的憤怒布甲鞋子
+		
 		89000, // 賽蓮的遺物 I
 		89001, // 賽蓮的遺物 II
 		89002, // 賽蓮的遺物 III
@@ -557,6 +584,261 @@ module.exports = {
 		89112, // 基德的聖物 III
 		89113, // 基德的聖物 IV
 		89114, // 基德的聖物 V
+		
+		9372, // 懲罰的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
+		9373, // 和諧的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
+		9374, // 森嚴的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
+		9375, // 懲罰的馬勒夏黑色蕾絲內衣	0	0	icon_equipments.pc_event_31_f_a_tex
+		9376, // 和諧的馬勒夏黑色蕾絲內衣	0	0	icon_equipments.pc_event_31_f_a_tex
+		9377, // 森嚴的馬勒夏黑色蕾絲內衣	0	0	icon_equipments.pc_event_31_f_a_tex
+		9381, // 懲罰的若隱若現黑色&黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		9382, // 和諧的若隱若現黑色&黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		9383, // 森嚴的若隱若現黑色&黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		9384, // 懲罰的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		9385, // 和諧的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		9386, // 森嚴的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		
+		97911, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97912, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97913, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97914, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97915, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97916, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97917, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97918, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97919, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97920, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97921, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97922, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97923, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97924, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97925, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97926, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97927, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97928, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97929, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97930, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97931, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97932, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97933, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97934, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97935, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97936, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97937, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97938, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97939, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97940, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97941, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97942, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97943, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97944, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97945, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97946, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97947, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97948, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97949, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97950, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97951, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97952, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97953, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97954, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97955, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97956, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97957, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97958, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97959, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97960, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97961, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97962, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97963, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97964, // [S][傳說]守護的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97965, // [S][傳說]流動的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97966, // [S][傳說]堅強的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97967, // [S][傳說]生命的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97968, // [S][傳說]尖銳的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97969, // [S][傳說]守護的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97970, // [S][傳說]流動的若隱若現的白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
+		97971, // 堅強的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97972, // 生命的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97973, // 尖銳的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97974, // 守護的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		97975, // 流動的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
+		
+		99437, // 堅強的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99438, // 生命的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99439, // 尖銳的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99440, // 守護的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99441, // 流動的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99462, // 堅強的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99463, // 生命的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99464, // 尖銳的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99465, // 守護的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99466, // 流動的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99467, // 堅強的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99468, // 生命的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99469, // 尖銳的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99470, // 守護的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99471, // 流動的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
+		99472, // 堅強的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99473, // 生命的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99474, // 尖銳的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99475, // 守護的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99476, // 流動的2017版 粉紅內衣 Ⅳ [傳說]  	0	0	icon_equipments.pc_event_57_f_b_tex
+		99497, // 堅強的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99498, // 生命的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99499, // 尖銳的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99500, // 守護的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99501, // 流動的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99502, // 堅強的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99503, // 生命的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99504, // 尖銳的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99505, // 守護的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		99506, // 流動的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
+		
+		//98106, // [物理增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98107, // [魔法增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98108, // [物理抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98109, // [魔法抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98110, // [物理暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98111, // [魔法暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98136, // [物理增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98137, // [魔法增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98138, // [物理抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98139, // [魔法抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98140, // [物理暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98141, // [魔法暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98142, // [物理增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98143, // [魔法增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98144, // [物理抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		98145, // [魔法抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98146, // [物理暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		//98147, // [魔法暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
+		
+		//98148, // [高階][物理增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98149, // [高階][魔法增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98150, // [高階][物理抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98151, // [高階][魔法抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98152, // [高階][物理暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98153, // [高階][魔法暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98178, // [高階][物理增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98179, // [高階][魔法增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98180, // [高階][物理抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98181, // [高階][魔法抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98182, // [高階][物理暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98183, // [高階][魔法暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98184, // [高階][物理增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98185, // [高階][魔法增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98186, // [高階][物理抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		98187, // [高階][魔法抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98188, // [高階][物理暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		//98189, // [高階][魔法暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
+		
+		136007, // 堅強的灰色連身內衣 [高級]
+		136008, // 生命的灰色連身內衣 [高級]
+		136009, // 尖銳的灰色連身內衣 [高級]
+		136010, // 守護的灰色連身內衣 [高級]
+		136011, // 流動的灰色連身內衣 [高級]
+		136012, // 堅強的灰色連身內衣 [稀有]
+		136013, // 生命的灰色連身內衣 [稀有]
+		136014, // 尖銳的灰色連身內衣 [稀有]
+		136015, // 守護的灰色連身內衣 [稀有]
+		136016, // 流動的灰色連身內衣 [稀有]
+		136017, // 堅強的灰色連身內衣 [傳說]
+		136018, // 生命的灰色連身內衣 [傳說]
+		136019, // 尖銳的灰色連身內衣 [傳說]
+		136020, // 守護的灰色連身內衣 [傳說]
+		136021, // 流動的灰色連身內衣 [傳說]
+		136022, // 梅勒目修蒙綢緞內衣 [一般]
+		136023, // 梅勒目修蒙綢緞內衣 [一般]
+		136024, // 梅勒目修蒙綢緞內衣 [一般]
+		136025, // 梅勒目修蒙綢緞內衣 [一般]
+		136026, // 梅勒目修蒙綢緞內衣 [一般]
+		136027, // 堅強的梅勒目修蒙綢緞內衣 [高級]
+		136028, // 生命的梅勒目修蒙綢緞內衣 [高級]
+		136029, // 尖銳的梅勒目修蒙綢緞內衣 [高級]
+		136030, // 守護的梅勒目修蒙綢緞內衣 [高級]
+		136031, // 流動的梅勒目修蒙綢緞內衣 [高級]
+		136032, // 堅強的梅勒目修蒙綢緞內衣 [稀有]
+		136033, // 生命的梅勒目修蒙綢緞內衣 [稀有]
+		136034, // 尖銳的梅勒目修蒙綢緞內衣 [稀有]
+		136035, // 守護的梅勒目修蒙綢緞內衣 [稀有]
+		136036, // 流動的梅勒目修蒙綢緞內衣 [稀有]
+		136037, // 堅強的梅勒目修蒙綢緞內衣 [傳說]
+		136038, // 生命的梅勒目修蒙綢緞內衣 [傳說]
+		136039, // 尖銳的梅勒目修蒙綢緞內衣 [傳說]
+		136040, // 守護的梅勒目修蒙綢緞內衣 [傳說]
+		136041, // 流動的梅勒目修蒙綢緞內衣 [傳說]
+		
+		146033, // 堅強的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
+		146034, // 生命的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
+		146035, // 尖銳的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
+		146036, // 守護的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
+		146037, // 流動的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
+		146038, // 馬勒夏白色蕾絲內衣 (一般)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146039, // 堅強的馬勒夏白色蕾絲內衣 (高級)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146040, // 生命的馬勒夏白色蕾絲內衣 (高級)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146041, // 尖銳的馬勒夏白色蕾絲內衣 (高級)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146042, // 守護的馬勒夏白色蕾絲內衣 (高級)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146043, // 流動的馬勒夏白色蕾絲內衣 (高級)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146044, // 堅強的馬勒夏白色蕾絲內衣 (稀有)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146045, // 生命的馬勒夏白色蕾絲內衣 (稀有)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146046, // 尖銳的馬勒夏白色蕾絲內衣 (稀有)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146047, // 守護的馬勒夏白色蕾絲內衣 (稀有)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146048, // 流動的馬勒夏白色蕾絲內衣 (稀有)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146049, // 堅強的馬勒夏白色蕾絲內衣 (傳說)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146050, // 生命的馬勒夏白色蕾絲內衣 (傳說)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146051, // 尖銳的馬勒夏白色蕾絲內衣 (傳說)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146052, // 守護的馬勒夏白色蕾絲內衣 (傳說)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146053, // 流動的馬勒夏白色蕾絲內衣 (傳說)	0	0	icon_equipments.pc_event_31_f_b_tex
+		146054, // 馬勒夏黑色蕾絲內衣 (一般)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146055, // 堅強的馬勒夏黑色蕾絲內衣(高級)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146056, // 生命的馬勒夏黑色蕾絲內衣(高級)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146057, // 尖銳的馬勒夏黑色蕾絲內衣(高級)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146058, // 守護的馬勒夏黑色蕾絲內衣(高級)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146059, // 流動的馬勒夏黑色蕾絲內衣(高級)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146060, // 堅強的馬勒夏黑色蕾絲內衣(稀有)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146061, // 生命的馬勒夏黑色蕾絲內衣(稀有)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146062, // 尖銳的馬勒夏黑色蕾絲內衣(稀有)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146063, // 守護的馬勒夏黑色蕾絲內衣(稀有)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146064, // 流動的馬勒夏黑色蕾絲內衣(稀有)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146065, // 堅強的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146066, // 生命的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146067, // 尖銳的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146068, // 守護的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
+		146069, // 流動的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
+		
+		// 202018, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		// 202043, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		// 202048, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		// 202019, // 生命的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		// 202044, // 生命的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		// 202049, // 生命的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202020, // 尖銳的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202045, // 尖銳的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202050, // 尖銳的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202021, // 守護的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202046, // 守護的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202051, // 守護的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202022, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202047, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		202052, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
+		
+		// 202053, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		// 202078, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		// 202083, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		// 202054, // 生命的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		// 202079, // 生命的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		// 202084, // 生命的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202055, // 尖銳的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202080, // 尖銳的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202085, // 尖銳的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202056, // 守護的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202081, // 守護的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202086, // 守護的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202057, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202082, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		202087, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
+		
 		
 		209601, // 技能鍛鍊初階經驗值獲得 I [小型]
 		209602, // 技能鍛鍊初階經驗值獲得 I [中型]

@@ -14,7 +14,7 @@ const DefaultSettings = {
 
 	"distance": 20,
 	"fovValue": 71,
-	"camShake": false,
+	"camShake": true,
 
 	"dungeon": true,
 	"flyMore": true,
@@ -75,8 +75,8 @@ const DefaultSettings = {
 	"tipGather": false,
 	"gatherCategory": 0,
 
-	"logNPC": false,
 	"logItemId": false,
+	"logNPC": false,
 	"logBoss": false,
 	"D_Message": false,
 	"Q_Balloon": false,

@@ -63,7 +63,7 @@ module.exports = function TeraHelper(mod) {
 	})
 	
 	// 镜头抖动
-	mod.clientInterface.configureCameraShake(mod.settings.camShake)
+	mod.clientInterface.configureCameraShake(!mod.settings.camShake)
 	// Cmd-Slash
 	mod.command.add("set", {
 		$none() { ui.show() },
@@ -362,14 +362,12 @@ module.exports = function TeraHelper(mod) {
 	// 登入角色
 	mod.game.on('enter_game', () => { // 'S_LOGIN'
 		mod.game.me.job = (mod.game.me.templateId-10101)%100
-		RemoveAllMarkers(tipMarkers)
-		stopLoot()
 	})
 	// 返回角色
 	mod.game.on('leave_game', () => { // 'S_RETURN_TO_LOBBY'
-		mod.game.me.job = -1
 		RemoveAllMarkers(tipMarkers)
 		stopLoot()
+		mod.game.me.job = -1
 	})
 	// 进入-加载画面
 	mod.game.on('enter_loading_screen', () => { // 'S_LOGIN' 'S_LOAD_TOPO'
@@ -600,13 +598,14 @@ module.exports = function TeraHelper(mod) {
 				}
 			})
 			mod.send('S_INSTANT_MOVE', 3, {
-				gameId: e.gameId,
-				loc: e.loc
+				gameId: mod.game.me.gameId,
+				loc: e.loc,
+				w: mod.game.me.w
 			})
 			return false
 		} else {
 			mod.send('S_ACTION_END', 5, {
-				gameId: e.gameId,
+				gameId: mod.game.me.gameId,
 				templateId: 11006, // 弓箭手
 				type: 25,
 				id: 9999999,
@@ -646,13 +645,14 @@ module.exports = function TeraHelper(mod) {
 	})
 	// User-Effect
 	mod.hook('S_USER_EFFECT', 1, e => {
-		if (e.circle==3 && e.operation==1) {
+		if (!mod.game.me.is(e.target) || !e.circle!=3) return
+		if (e.operation==1) {
 			mod.send('S_PLAY_EFFECT', 1, {
 				gameId: mod.game.me.gameId,
 				id: 915082501
 			})
 		}
-		if (e.circle==3 && e.operation==2) {
+		if (e.operation==2) {
 			mod.send('S_REMOVE_EFFECT', 1, {
 				gameId: mod.game.me.gameId,
 				name: "FX_L_HotFix_150825.PS.L_15082501_PS"
@@ -835,10 +835,7 @@ module.exports = function TeraHelper(mod) {
 		})
 	})
 	mod.hook('S_DESPAWN_COLLECTION', 2, e => {
-		if (tipMarkers.has(e.gameId*100n)) {
-			tipMarkers.delete(e.gameId*100n)
-			RemoveMarker(e.gameId*100n)
-		}
+		if (tipMarkers.has(e.gameId*100n)) RemoveMarker(e.gameId*100n)
 	})
 	
 	mod.dispatch.addDefinition('C_TRY_NPC_INTERACTION', 0, [ // 数据包总长度 4+20
@@ -935,10 +932,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_DESPAWN_NPC', 3, e => {
 		if (e.gameId == Set.GageInfo.id) Set.GageInfo.id = 0n
 		
-		if (tipMarkers.has(e.gameId*100n)) {
-			tipMarkers.delete(e.gameId*100n)
-			RemoveMarker(e.gameId*100n)
-		}
+		if (tipMarkers.has(e.gameId*100n)) RemoveMarker(e.gameId*100n)
 		// 移除 尸体灰烬
 		if (mod.settings.deadAnimation && e.type==5) {
 			e.type = 1
@@ -1000,38 +994,22 @@ module.exports = function TeraHelper(mod) {
 	let partyMembers = []
 	mod.hook('S_PARTY_MEMBER_LIST', (Ver<100?7 : Ver<106?8 : 9), e => {
 		partyMembers = e.members
-		if (mod.game.me.playerId == e.leaderPlayerId) {
-			mod.game.me.isLeader = true
-		} else {
-			mod.game.me.isLeader = false
-		}
+		mod.game.me.isLeader = (mod.game.me.playerId == e.leaderPlayerId)
 	})
 	mod.hook('S_PARTY_MEMBER_STAT_UPDATE', (Ver<108? 3 : 4), e => {
-		if (tipMarkers.has(e.playerId) && e.alive) {
-			RemoveMarker(e.playerId)
-			tipMarkers.delete(e.playerId)
-		}
+		if (tipMarkers.has(e.playerId) && e.alive) RemoveMarker(e.playerId)
 	})
 	mod.hook('S_BAN_PARTY_MEMBER', 1, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
-		if (tipMarkers.has(e.playerId)) {
-			RemoveMarker(e.playerId)
-			tipMarkers.delete(e.playerId)
-		}
+		if (tipMarkers.has(e.playerId)) RemoveMarker(e.playerId)
 	})
 	mod.hook('S_LOGOUT_PARTY_MEMBER', 1, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
-		if (tipMarkers.has(e.playerId)) {
-			RemoveMarker(e.playerId)
-			tipMarkers.delete(e.playerId)
-		}
+		if (tipMarkers.has(e.playerId)) RemoveMarker(e.playerId)
 	})
 	mod.hook('S_LEAVE_PARTY_MEMBER', 2, e => {
 		partyMembers = partyMembers.filter(p => p.playerId != e.playerId)
-		if (tipMarkers.has(e.playerId)) {
-			RemoveMarker(e.playerId)
-			tipMarkers.delete(e.playerId)
-		}
+		if (tipMarkers.has(e.playerId)) RemoveMarker(e.playerId)
 	})
 	mod.hook('S_LEAVE_PARTY', 1, e => {
 		partyMembers = []
@@ -1090,7 +1068,6 @@ module.exports = function TeraHelper(mod) {
 		partyMembers.forEach(member => {
 			if (member.gameId != e.gameId) return
 			RemoveMarker(member.playerId)
-			tipMarkers.delete(member.playerId)
 		})
 	})
 	function MakeMarker(id, loc, item) {
@@ -1103,6 +1080,7 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	function RemoveMarker(id) {
+		tipMarkers.delete(id)
 		mod.send('S_DESPAWN_DROPITEM', 4, {
 			gameId: id
 		})
@@ -1277,7 +1255,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_BOSS_GAGE_INFO', 3, e => {
 		if (boss_ID && boss_ID==e.id) return
 		boss_ID = e.id
-		if (mod.settings.logBoss) mod.log(`S_BOSS_GAGE_INFO|${e.huntingZoneId}|${e.templateId}`)
+		if (mod.settings.logBoss) mod.log(`S_BOSS_GAGE_INFO|${e.huntingZoneId}|${e.templateId}|${e.id}`)
 	})
 	mod.hook('S_ACTION_STAGE', 9, e => {
 		if (!mod.settings.logBoss || !boss_ID || boss_ID!=e.gameId) return
@@ -1308,7 +1286,6 @@ module.exports = function TeraHelper(mod) {
 	})
 	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
 		if (e.button == 609) mod.game.me.reputation = e.tokens
-		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
 	})
 	
 	this.destructor = () => {
