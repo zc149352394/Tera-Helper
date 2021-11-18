@@ -620,6 +620,9 @@ module.exports = function TeraHelper(mod) {
 			})
 		}
 	})
+	mod.dispatch.addDefinition('C_SKILL_LEARN_LIST', 2, [
+		['contract', 'uint32']
+	])
 	// 瞬间学满技能
 	let learnContract = null, learnGroup = null, learnLevel = null
 	mod.hook('C_SKILL_LEARN_LIST', 2, e => {

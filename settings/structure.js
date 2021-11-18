@@ -14,7 +14,7 @@ module.exports = [
 
 	{key: "distance", name: `镜头距离(高度)`, type: "number", min: 1.0, max: 99999999.0, step: 1.0},
 	{key: "fovValue", name: `镜头广角(视野)`, type: "range",  min: 30.0, max: 120.0, step: 1.0},
-	{key: "camShake", name: `阻止镜头抖动`, type: "bool"},
+	{key: "camShake", name: `阻止 镜头抖动`, type: "bool"},
 
 	{key: "dungeon", name: `副本 尾王传送`, type: "bool"},
 	{key: "flyMore", name: `无限 飞行能量`, type: "bool"},
