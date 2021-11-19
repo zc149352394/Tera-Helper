@@ -34,7 +34,6 @@ module.exports = [
 
 	{key: "autoRevive",    name: `自动 金币复活`, type: "bool"},
 	{key: "instantRevive", name: `瞬间 复活起身`, type: "bool"},
-	{key: "instantLearn",  name: `瞬间 学满技能`, type: "bool"},
 
 	{key: "falling",      name: `避免高空 坠落伤害`, type: "bool"},
 	{key: "afker",        name: `防止挂机 返回大厅`, type: "bool"},

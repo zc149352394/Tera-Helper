@@ -1,10 +1,10 @@
 {
 	"files": {
-		"index.js": "54338157e14d5b77d11fb2d9b5f9e975ef2b159325a92797b63693232a3d9d9d",
-		"module.json": "7b8644b7f73f841a94a2f181640de0ec51b659c19dca38d61800a2d918bbb83b",
-		"README.md": "3b257f64fda95deca39d9e6428cc01cd70355ab993bd4a96824d29931cd38fcb",
-		"settings/migrator.js": "08cfb9d6ad74560e437c466d312b1fcc5bdf00a33dad47348a3a4ffea76684d2",
-		"settings/structure.js": "93b2986fab749c33a8f0fba8b0b0475a6c7028034378d32bfcd64d08ce275cd6",
+		"index.js": "2ef43f6784d7624420a60ac259691347a7f34afeef15a74344c87ee07bd92803",
+		"module.json": "a479955a8806986eff1b723fd08e1e86e08519e7cb578ceba92d03ec029615d6",
+		"README.md": "34e07b069d01d4594faea2aaa4d569ccd5bb7d693ab9c590764197120bec8dea",
+		"settings/migrator.js": "56fd09679ee8e4b4442327e402efcf34765606b146cffd243b5f5cec2d41d31b",
+		"settings/structure.js": "0054a1d6decefd9128bee9784ce99c77e425ab1c2d764047ba0455bca1f979d3",
 		"LICENSE": "6326ae60dd78c85b1f2f6ff308ef1615ff939323270d838e8ebab20f5de1a8c5"
 	}
 }

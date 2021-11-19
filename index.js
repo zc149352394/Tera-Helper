@@ -483,7 +483,7 @@ module.exports = function TeraHelper(mod) {
 		mod.game.me.loc  = e.loc
 		mod.game.me.dest = e.dest
 		if ([0, 1, 5, 6].includes(e.type)) stopMoving = Date.now()
-		if ([2, 10].includes(e.type) && mod.settings.falling) return false // 高空坠落伤害
+		if ([2, 10].includes(e.type) && mod.settings.falling) return false // 禁用高空坠落伤害 no-fall-damage
 	})
 	mod.hook('C_RETURN_TO_LOBBY', 1, e => {
 		if (Date.now() > (stopMoving+60*60*1000) && mod.settings.afker) return false
@@ -620,29 +620,6 @@ module.exports = function TeraHelper(mod) {
 			})
 		}
 	})
-	// 瞬间学满技能
-	let learnContract = null, learnGroup = null, learnLevel = null
-	mod.hook('C_SKILL_LEARN_LIST', 2, e => {
-		learnContract = e.contract
-	})
-	mod.hook('S_SKILL_LEARN_LIST', 2, e => {
-		if (!mod.settings.instantLearn) return
-		e.skills.forEach(obj => {
-			if (Math.floor(obj.id/10000) != learnGroup) return
-			if (Math.floor(obj.id/100)%100 != (learnLevel+1)) return
-			mod.send('C_SKILL_LEARN_REQUEST', 2, {
-				contract: 0,
-				id: obj.id,
-				active: true
-			})
-		})
-	})
-	mod.hook('S_SKILL_LEARN_RESULT', 2, e => {
-		if (!mod.settings.instantLearn) return
-		learnGroup = Math.floor(e.newSkill / 10000)
-		learnLevel = Math.floor(e.newSkill / 100) % 100
-		if (e.success) mod.send('C_SKILL_LEARN_LIST', 2, { contract: learnContract })
-	})
 	// User-Effect
 	mod.hook('S_USER_EFFECT', 1, e => {
 		if (!mod.game.me.is(e.target) || !e.circle!=3) return
@@ -684,7 +661,7 @@ module.exports = function TeraHelper(mod) {
 		mod.send('S_CANNOT_START_SKILL', 4, { skill: e.skill })
 		return false
 	})
-	// 移除 被锁定绿字
+	// 移除 被锁定绿字 No-Lockon-You
 	mod.hook('S_LOCKON_YOU', 1, () => {
 		if (mod.settings.noLockYou) return false
 	})
@@ -696,7 +673,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_SOCIAL', 1, e => {
 		if (mod.settings.noSocialAnimation && [31, 32, 33].includes(e.animation)) return false
 	})
-	// 移除 屏幕扭曲
+	// 移除 屏幕扭曲 No-More-Screen-Effects
 	mod.hook('S_ABNORMALITY_BEGIN', (Ver<107?4 : 5), e => {
 		if (!mod.settings.noScreenEffect || !mod.game.me.is(e.target)) return
 		var abnormality = mod.game.data.abnormalities.get(e.id)
@@ -734,7 +711,7 @@ module.exports = function TeraHelper(mod) {
 		})
 		return true
 	})
-	// 无限 飞行能量
+	// 无限 飞行能量 Fly-More
 	let outOfEnergy = false
 	mod.tryHook('S_CANT_FLY_ANYMORE', 1, () => {
 		if (mod.settings.flyMore) return false
@@ -1093,7 +1070,7 @@ module.exports = function TeraHelper(mod) {
 		RemoveAllMarkers(tipMarkers)
 	})
 	
-	// Auto-Loot
+	// 自动拾取-过滤拾取
 	let dropItems = new Map()
 	let loop = { _destroyed: true }
 	mod.command.add("loot", (arg) => {

@@ -34,7 +34,6 @@ const DefaultSettings = {
 
 	"autoRevive": true,
 	"instantRevive": true,
-	"instantLearn": true,
 
 	"falling": true,
 	"afker": true,

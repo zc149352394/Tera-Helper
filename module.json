@@ -7,13 +7,37 @@
         "reloadable": true,
         "settingsFile": "config.json",
         "settingsMigrator": "./settings/migrator.js",
-        "settingsVersion": 4
+        "settingsVersion": 5
     },
     "author": "ZC",
-    "description": "这个B很懒, 什么都没留下...",
+    "description": "TERA插件合集, 兼容客户端 92.03 - 109.02",
     "servers": [
-        "https://gitee.com/zc149352394/TEAR-Helper/raw/main/",
         "https://raw.githubusercontent.com/zc149352394/TEAR-Helper/main/"
+    ],
+    "conflicts": [
+        "camera-control",
+        "flasher",
+        "cmd-slash",
+        "cmd-channel",
+        "teleport", "Teleport",
+        "afk", "afker",
+        "no-fall-damage",
+        "etching-tooltip",
+        "instant-enchant", "instant-upgrade", "instant-soulbind", "instant-dismantle", "instant-merge",
+        "instant-everything",
+        "instant-revive",
+        "inspect", "auto-inspect",
+        "cutscene-skip", "no-movie",
+        "no-cancel-mote",
+        "no-more-wasted-backstabs",
+        "no-lockon-you", "no-lock-you-msg",
+        "remove-idles",
+        "monitor-control", "no-more-screen-effects",
+        "vanguard", "auto-vanguard",
+        "guild-quest", "auto-guild-quest",
+        "redirect", "auto-redirect",
+        "fly-more", "fly-forever",
+        "loot", "auto-loot", "auto-loot-old"
     ],
     "version": "92.03 - 109.02"
 }

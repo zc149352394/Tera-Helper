@@ -1,6 +1,8 @@
-# 缺def的看这个 https://github.com/PsykoDev/Last-Def-Files
+# 缺def的看这个
 
-常用控制命令:
+https://github.com/PsykoDev/Last-Def-Files
+
+# 常用控制命令:
 
 - !set(如, 在/8频道中输入"set"即可)
 
