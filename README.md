@@ -12,7 +12,7 @@ https://github.com/PsykoDev/Last-Def-Files
 
 ---
 
-![screenshot](https://github.com/zc149352394/TEAR-Helper/blob/main/screenshot/1.png)
-![screenshot](https://github.com/zc149352394/TEAR-Helper/blob/main/screenshot/2.png)
-![screenshot](https://github.com/zc149352394/TEAR-Helper/blob/main/screenshot/3.png)
-![screenshot](https://github.com/zc149352394/TEAR-Helper/blob/main/screenshot/4.png)
+![screenshot](https://github.com/zc149352394/Tera-Helper/blob/main/screenshot/1.png)
+![screenshot](https://github.com/zc149352394/Tera-Helper/blob/main/screenshot/2.png)
+![screenshot](https://github.com/zc149352394/Tera-Helper/blob/main/screenshot/3.png)
+![screenshot](https://github.com/zc149352394/Tera-Helper/blob/main/screenshot/4.png)

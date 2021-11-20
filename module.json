@@ -12,7 +12,7 @@
     "author": "ZC",
     "description": "TERA插件合集, 兼容客户端 92.03 - 109.02",
     "servers": [
-        "https://raw.githubusercontent.com/zc149352394/TEAR-Helper/main/"
+        "https://raw.githubusercontent.com/zc149352394/Tera-Helper/main/"
     ],
     "conflicts": [
         "camera-control",
