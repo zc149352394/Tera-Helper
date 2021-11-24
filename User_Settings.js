@@ -881,6 +881,441 @@ module.exports = {
 		209718  // 技能鍛鍊高階經驗值獲得 IX [中型]
 	],
 	autoUseItems: [
+		35000, // 鬥志紋章 - 旋風擊	0	0	icon_crest.crestpointattack_tex
+		35001, // 集中紋章 - 迴避攻擊	0	0	icon_crest.crestevasionattack_tex
+		35002, // 特質紋章 - 旋風擊	0	0	icon_crest.crestpointattack_tex
+		35003, // 集中紋章 - 緊急迴避	0	0	icon_crest.cresttumbling_tex
+		35004, // 決心紋章 - 鋼鐵決心	0	0	icon_crest.crestironwillb_tex
+		35005, // 特質紋章 - 鬥志一擊	0	0	icon_crest.crestaggravatingstrike_tex
+		35006, // 精神紋章 - 連續攻擊	0	0	icon_crest.crestcomboattack_tex
+		35007, // 集中紋章 - 影分身	0	0	icon_crest.crestdecoy_tex
+		35008, // 連續 鬥志紋章 - 鬥志一擊	0	0	icon_crest.crestaggravatingstrike_tex
+		35009, // 連續 鬥志紋章 - 突進砍擊	0	0	icon_crest.crestrushingslash_tex
+		35010, // 保護紋章 - 迴避攻擊	0	0	icon_crest.crestevasionattack_tex
+		35011, // 集中紋章 - 後擒術	0	0	icon_crest.crestbackattack_tex
+		35012, // 鬥志紋章 - 強襲砍擊	0	0	icon_crest.cresthardslash_tex
+		35013, // 時間紋章 - 強襲砍擊	0	0	icon_crest.cresthardslash_tex
+		35014, // 集中紋章 - 反擊震懾	0	0	icon_crest.crestreversalturningattack_tex
+		35015, // 鬥志紋章 - 疾風劈擊	0	0	icon_crest.crestraker_tex
+		35016, // 時間紋章 - 後擒術	0	0	icon_crest.crestbackattack_tex
+		35017, // 神速紋章 - 向下劈擊	0	0	icon_crest.crestdownblowattack_tex
+		35018, // 決心紋章 - 猛毒一擊	0	0	icon_crest.crestpoisonblowattack_tex
+		35019, // 忍耐紋章 - 無雙亂舞：劈擊	0	0	icon_crest.crestdualslash_tex
+		35020, // 鬥志紋章 - 破烈	0	0	icon_crest.crestrupture_tex
+		35021, // 體力紋章 - 雙劍防禦	0	0	icon_crest.cresttwinswordsdefence_tex
+		35022, // 野獸紋章 - 變換影子	0	0	icon_crest.crestshadowchange_tex
+		35023, // 神速紋章 - 緊急迴避	0	0	icon_crest.cresttumbling_tex
+		35024, // 野獸紋章 - 挑撥亂舞	0	0	icon_crest.crestnanmu_tex
+		35025, // 鬥志紋章 - 旋風砍擊	0	0	icon_crest.stormcut_tex
+		35026, // 連續 鬥志紋章 (旋風擊) - 強襲砍擊	0	0	icon_crest.cresthardslash_tex
+		35027, // 減速紋章 - 特質連打	0	0	icon_crest.cresttenaciousattack_tex
+		35028, // 集中紋章 - 後擒術	0	0	icon_crest.crestbackattack_tex
+		35029, // 集中紋章 - 緊急迴避	0	0	icon_crest.cresttumbling_tex
+		35030, // 決心紋章 - 鋼鐵決心	0	0	icon_crest.crestironwillb_tex
+		35031, // 連續 鬥志紋章 [鬥志一擊] - 突進砍擊	0	0	icon_crest.crestrushingslash_tex
+		35032, // 必殺紋章 - 疾風劈擊	0	0	icon_crest.crestraker_tex
+		35033, // 鬥志紋章 - 疾風劈擊	0	0	icon_crest.crestraker_tex
+		35034, // 時間紋章 - 必殺意志	0	0	icon_crest.crestdeadlywill_tex
+		35200, // 必殺紋章 - 疾風劈擊	0	0	icon_crest.crestraker_tex
+		35650, // 時間紋章 - 盾牌打擊	0	0	icon_crest.crestshieldstrike_tex
+		35651, // 集中紋章 - 盾牌打擊	0	0	icon_crest.crestshieldstrike_tex
+		35652, // 集中紋章 - 捕獲	0	0	icon_crest.cresthookthrow_tex
+		35653, // 野獸紋章 - 連續攻擊	0	0	icon_crest.crestcomboattack_tex
+		35654, // 精神紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35655, // 決心紋章 - 衝擊猛打	0	0	icon_crest.crestshockblow_tex
+		35656, // 精神紋章 - 猛烈突進	0	0	icon_crest.crestscrewthough_tex
+		35657, // 集中紋章 - 信賴光環	0	0	icon_crest.crestinspiringroar_tex
+		35658, // 慵懶紋章 - 憤怒誘發	0	0	icon_crest.crestprovokerage_tex
+		35659, // 減速紋章 - 捕獲	0	0	icon_crest.cresthookthrow_tex
+		35660, // 野獸紋章 - 捕獲	0	0	icon_crest.cresthookthrow_tex
+		35661, // 神速紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35662, // 保護紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35663, // 必殺紋章 - 猛烈突進	0	0	icon_crest.crestscrewthough_tex
+		35664, // 野獸紋章 - 衝擊猛打	0	0	icon_crest.crestshockblow_tex
+		35665, // 時間紋章 - 叉槍鎖鏈	0	0	icon_crest.crestharpoonshot_tex
+		35666, // 精神紋章 - 連續攻擊	0	0	icon_crest.crestcomboattack_tex
+		35667, // 野獸紋章 - 反擊突刺	0	0	icon_crest.crestriposte_tex
+		35668, // 野獸紋章 - 盾牌連打	0	0	icon_crest.crestshieldattack_tex
+		35669, // 減速紋章 - 跳躍攻擊	0	0	icon_crest.crestleaprampage_tex
+		35670, // 鬥志紋章 - 壓倒	0	0	icon_crest.crestoverhelm_tex
+		35671, // 集中紋章 - 退避	0	0	icon_crest.crestbackstep_tex
+		35672, // 意志紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35673, // 意志紋章 - 反擊突刺	0	0	icon_crest.crestriposte_tex
+		35674, // 意志紋章 - 犧牲意志	0	0	icon_crest.crestrejuvenation_tex
+		35675, // 意志紋章 - 盾牌防禦	0	0	icon_crest.crestdefence_tex
+		35676, // 野獸紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35677, // 鬥志紋章 - 猛烈突進	0	0	icon_crest.crestscrewthough_tex
+		35678, // 鬥志紋章 - 跳躍攻擊	0	0	icon_crest.crestleaprampage_tex
+		35679, // 時間紋章 - 粉碎防具	0	0	icon_crest.crestarmorbreak_tex
+		35680, // 集中紋章 - 進擊突刺	0	0	icon_crest.crestadvancingcharge_tex
+		35681, // 精神紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35682, // 神速紋章 - 挑撥咆哮	0	0	icon_crest.crestroar_tex
+		35683, // 野獸紋章 - 反擊突刺	0	0	icon_crest.crestriposte_tex
+		35684, // 野獸紋章 - 盾牌連打	0	0	icon_crest.crestshieldattack_tex
+		35685, // 鬥志紋章 - 壓倒	0	0	icon_crest.crestoverhelm_tex
+		35686, // 集中紋章 - 退避	0	0	icon_crest.crestbackstep_tex
+		35687, // 野獸紋章 - 前線維持	0	0	icon_crest.crestholdtheline_tex
+		35850, // 集中紋章 - 叉槍鎖鏈	0	0	icon_crest.crestharpoonshot_tex
+		36300, // 機會紋章 - 一刀兩斷	0	0	icon_crest.crestcuttingslash_tex
+		36301, // 鬥志紋章 - 重擊斬	0	0	icon_crest.cresthandyslash_tex
+		36302, // 鬥志紋章 - 刀背打擊	0	0	icon_crest.crestflatblade_tex
+		36303, // 特質紋章 - 一刀兩斷	0	0	icon_crest.crestcuttingslash_tex
+		36304, // 神速紋章 - 連續攻擊	0	0	icon_crest.crestcomboattack_tex
+		36305, // 集中紋章 - 神經劈擊	0	0	icon_crest.crestveinslash_tex
+		36306, // 平衡紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		36307, // 集中紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		36308, // 連續 神速紋章 - 後擒術	0	0	icon_crest.crestturnaroundattack_tex
+		36309, // 必殺紋章 - 迴旋砍擊	0	0	icon_crest.crestsworddance_tex
+		36310, // 連續 鬥志紋章 - 緊急迴避	0	0	icon_crest.cresttumbling_tex
+		36311, // 必殺紋章 - 要害攻擊	0	0	icon_crest.creststingerblade_tex
+		36312, // 必殺紋章 - 重擊斬	0	0	icon_crest.cresthandyslash_tex
+		36313, // 鬥志紋章 - 迴旋砍擊	0	0	icon_crest.crestsworddance_tex
+		36314, // 神速紋章 - 後退踢擊	0	0	icon_crest.crestretreatingkick_tex
+		36315, // 鬥志紋章 - 瞬閃	0	0	icon_crest.crestcuthead_tex
+		36316, // 鬥志紋章 - 憤怒一擊	0	0	icon_crest.crestragingstrike_tex
+		36317, // 集中紋章 - 後擒術	0	0	icon_crest.crestturnaroundattack_tex
+		36318, // 減速紋章 - 真空三段斬	0	0	icon_crest.cresttripleslash_tex
+		36319, // 連續 鬥志紋章 - 跳躍奮進	0	0	icon_crest.crestadvancingleap_tex
+		36320, // 活力紋章 - 緊急迴避	0	0	icon_crest.cresttumbling_tex
+		36321, // 鬥志紋章 - 要害攻擊	0	0	icon_crest.creststingerblade_tex
+		36322, // 鬥志紋章 - 憤怒一擊	0	0	icon_crest.crestragingstrike_tex
+		36323, // 連續 神速紋章 (要害攻擊) - 後退踢擊	0	0	icon_crest.crestretreatingkick_tex
+		36324, // 機會紋章 - 一刀兩段	0	0	icon_crest.crestcuttingslash_tex
+		36325, // 鬥志紋章 - 重擊斬	0	0	icon_crest.cresthandyslash_tex
+		36326, // 必殺紋章 - 迴旋砍擊	0	0	icon_crest.crestsworddance_tex
+		36327, // 必殺紋章 - 重擊斬	0	0	icon_crest.cresthandyslash_tex
+		36328, // 必殺紋章 - 瞬閃	0	0	icon_crest.crestcuthead_tex
+		36329, // 鬥志紋章 - 瞬閃	0	0	icon_crest.crestcuthead_tex
+		36330, // 鬥志紋章 - 下顎粉碎	0	0	icon_crest.crestjawbreaker_tex
+		36331, // 連續 鬥志紋章 (一刀兩段) - 下顎粉碎	0	0	icon_crest.crestjawbreaker_tex
+		36500, // 必殺紋章 - 瞬閃	0	0	icon_crest.crestcuthead_tex
+		36950, // 必殺紋章 - 聚力之擊	0	0	icon_crest.crestblastslash_tex
+		36951, // 鬥志紋章 - 聚力之擊	0	0	icon_crest.crestblastslash_tex
+		36952, // 神速紋章 - 打擊大地	0	0	icon_crest.crestbash_tex
+		36953, // 特質紋章 - 聚力之擊	0	0	icon_crest.crestblastslash_tex
+		36954, // 神速紋章 - 漩渦	0	0	icon_crest.crestwhirlwind_tex
+		36955, // 鬥志紋章 - 打擊大地	0	0	icon_crest.crestbash_tex
+		36956, // 平衡紋章 - 氣合	0	0	icon_crest.cresttenacity_tex
+		36957, // 連續神速紋章 [龍捲風] - 強襲攻擊 	0	0	icon_crest.crestassaultattack_tex
+		36958, // 連續 神速紋章 - 殺氣爆發	0	0	icon_crest.crestmurderousvent_tex
+		36959, // 保護紋章 - 氣合	0	0	icon_crest.cresttenacity_tex
+		36960, // 機會紋章 - 疾走	0	0	icon_crest.crestdash_tex
+		36961, // 必殺紋章 - 向下劈擊	0	0	icon_crest.crestdownblowattack_tex
+		36962, // 特質紋章 - 氣合	0	0	icon_crest.cresttenacity_tex
+		36963, // 精神紋章 - 氣合	0	0	icon_crest.cresttenacity_tex
+		36964, // 鬥志紋章 - 起身攻擊	0	0	icon_crest.crestrisingattack_tex
+		36965, // 必殺紋章 - 肋骨粉碎	0	0	icon_crest.crestribbreaker_tex
+		36966, // 精神紋章 - 武器防禦	0	0	icon_crest.crestweapondefence_tex
+		36967, // 必殺紋章 - 漩渦	0	0	icon_crest.crestwhirlwind_tex
+		36968, // 神速紋章 - 聚力之擊	0	0	icon_crest.crestblastslash_tex
+		36969, // 機會紋章 - 震懾	0	0	icon_crest.crestturnback_tex
+		36970, // 體力紋章 - 狂暴化	0	0	icon_crest.crestberserk_tex
+		36971, // 時間紋章 - 狂暴化	0	0	icon_crest.crestberserk_tex
+		36972, // 鬥志紋章 - 全神一擊	0	0	icon_crest.crestsoulstrike_tex
+		36973, // 鬥志紋章 - 聚力之擊	0	0	icon_crest.crestblastslash_tex
+		36974, // 神速紋章 - 漩渦	0	0	icon_crest.crestwhirlwind_tex
+		36975, // 鬥志紋章 - 打擊大地	0	0	icon_crest.crestbash_tex
+		36976, // 鬥志紋章 - 肋骨粉碎	0	0	icon_crest.crestribbreaker_tex
+		36977, // 必殺紋章 - 漩渦	0	0	icon_crest.crestwhirlwind_tex
+		36978, // 集中紋章 - 火花狂戰士 	0	0	icon_crest.crestselfbuff_tex
+		36979, // 連續 神速紋章 (聚力之擊) - 前進橫劈	0	0	icon_crest.crestsideslash_tex
+		36980, // 集中紋章 - 強襲攻擊	0	0	icon_crest.crestassaultattack_tex
+		36981, // 活力紋章 - 強襲攻擊	0	0	icon_crest.crestassaultattack_tex
+		37150, // 鬥志紋章 - 肋骨粉碎	0	0	icon_crest.crestribbreaker_tex
+		37600, // 時間紋章 - 魔力強化	0	0	icon_skills.cr5_strengthenmana
+		37601, // 神速紋章 - 隕石墜落	0	0	icon_crest.cresthellfire_tex
+		37602, // 集中紋章 - 隕石墜落	0	0	icon_crest.cresthellfire_tex
+		37603, // 連續 鬥志紋章 - 雷電刻印	0	0	icon_crest.crestshocktrap_tex
+		37604, // 必殺紋章 - 破滅光彈	0	0	icon_crest.crestlightofruin_tex
+		37605, // 貫通紋章 - 睡眠之風	0	0	icon_crest.crestsleepwind_tex
+		37606, // 集中紋章 - 神經衰弱	0	0	icon_crest.crestneurasthenia_tex
+		37607, // 精神紋章 - 雷電刻印	0	0	icon_crest.crestshocktrap_tex
+		37608, // 追蹤紋章 - 束縛詛咒	0	0	icon_crest.crestcurseofshackle_tex
+		37609, // 助力紋章 - 火焰柱	0	0	icon_crest.crestauraburn_tex
+		37610, // 集中紋章 - 污染詛咒	0	0	icon_crest.crestdisease_tex
+		37611, // 阻斷紋章 - 燃燒氣息	0	0	icon_crest.crestburningbreath_tex
+		37612, // 決心紋章 - 魔力盾牌	0	0	icon_crest.crestmanashield_tex
+		37613, // 必殺紋章 - 爆裂球	0	0	icon_crest.crestblastball_tex
+		37614, // 體力紋章 - 爆裂球	0	0	icon_crest.crestblastball_tex
+		37615, // 集中紋章 - 岩石化	0	0	icon_crest.creststoneshape_tex
+		37616, // 時間紋章 - 魔力盾牌	0	0	icon_crest.crestmanashield_tex
+		37617, // 精神紋章 - 隕石墜落	0	0	icon_crest.cresthellfire_tex
+		37618, // 體力紋章 - 退避	0	0	icon_crest.crestbackstep_tex
+		37619, // 減速紋章 - 污染詛咒	0	0	icon_crest.crestdisease_tex
+		37620, // 神速紋章 - 追蹤業火	0	0	icon_crest.cresttrackinginferno_tex
+		37621, // 集中紋章 - 破滅光彈	0	0	icon_crest.crestlightofruin_tex
+		37622, // 鬥志紋章 - 火焰柱	0	0	icon_crest.crestauraburn_tex
+		37623, // 時間紋章 - 燃燒氣息	0	0	icon_crest.crestburningbreath_tex
+		37624, // 連續 神速紋章 (雷電刻印) - 結冰大地	0	0	icon_crest.crestfreezingtheearth_tex
+		37625, // 機會紋章 - 打雷重擊	0	0	icon_crest.cr5_lightningstruck
+		37626, // 連續 神速紋章 (爆裂球) - 結冰大地	0	0	icon_crest.crestfreezingtheearth_tex
+		37627, // 時間紋章 - 魔力強化	0	0	icon_skills.cr5_strengthenmana
+		37628, // 追蹤紋章 - 束縛詛咒	0	0	icon_crest.crestcurseofshackle_tex
+		37629, // 必殺紋章 - 爆裂球	0	0	icon_crest.crestblastball_tex
+		37630, // 集中紋章 - 石化	0	0	icon_crest.creststoneshape_tex
+		37631, // 必殺紋章 - 魔力爆發	0	0	icon_crest.crestmanaburst_tex
+		37800, // 集中紋章 - 岩石化	0	0	icon_crest.creststoneshape_tex
+		38250, // 鬥志紋章 - 穿透射擊	0	0	icon_crest.crestthrougharrow_tex
+		38251, // 熟練紋章 - 穿透射擊	0	0	icon_crest.crestthrougharrow_tex
+		38252, // 熟練紋章 - 集中射擊	0	0	icon_crest.crestchargearrow_tex
+		38253, // 集中紋章 - 退避	0	0	icon_crest.crestbackstep_tex
+		38254, // 命中紋章 - 穿透射擊	0	0	icon_crest.crestthrougharrow_tex
+		38255, // 時間紋章 - 蜘蛛網陷阱	0	0	icon_crest.crestwebtrap_tex
+		38256, // 連續 神速紋章 - 多重射擊	0	0	icon_crest.crestarrowshower_tex
+		38257, // 連續 神速紋章 - 多重射擊	0	0	icon_crest.crestarrowshower_tex
+		38258, // 機會紋章 - 多重射擊	0	0	icon_crest.crestarrowshower_tex
+		38259, // 特質紋章 - 裝死	0	0	icon_crest.crestfeigndeath_tex
+		38260, // 特質紋章 - 集中射擊	0	0	icon_crest.crestchargearrow_tex
+		38261, // 鬥志紋章 - 集中射擊	0	0	icon_crest.crestchargearrow_tex
+		38262, // 體力紋章 - 迴旋踢	0	0	icon_crest.crestturningkick_tex
+		38263, // 時間紋章 - 迴旋踢	0	0	icon_crest.crestturningkick_tex
+		38264, // 慵懶紋章 - 脫離攻擊	0	0	icon_crest.crestescapingattack_tex
+		38265, // 集中紋章 - 麻痺陷阱箭矢	0	0	icon_crest.crestparalysistraparrow_tex
+		38266, // 必殺紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		38267, // 鬥志紋章 - 爆發陷阱箭矢	0	0	icon_crest.crestexplosiontraparrow_tex
+		38268, // 集中紋章 - 脫離攻擊	0	0	icon_crest.crestescapingattack_tex
+		38269, // 集中紋章 - 牽制射擊	0	0	icon_crest.crestcontaningshot_tex
+		38270, // 鬥志紋章 - 速射	0	0	icon_crest.crestrapidshot_tex
+		38271, // 神速紋章 - 箭雨	0	0	icon_crest.crestarrowfall_tex
+		38272, // 命中紋章 - 集中射擊	0	0	icon_crest.crestchargearrow_tex
+		38273, // 時間紋章 - 昏厥陷阱	0	0	icon_crest.crestparalysistrap_tex
+		38274, // 活力紋章 - 蜘蛛網箭矢	0	0	icon_crest.crestspiderarrow_tex
+		38275, // 集中紋章 - 連射	0	0	icon_crest.cr_chain_arrow
+		38276, // 鬥志紋章 - 箭雨	0	0	icon_crest.crestarrowfall_tex
+		38277, // 命中紋章 - 穿透射擊	0	0	icon_crest.crestthrougharrow_tex
+		38278, // 機會紋章 - 多重射擊	0	0	icon_crest.crestarrowshower_tex
+		38279, // 必殺紋章 - 集中射擊	0	0	icon_crest.crestchargearrow_tex
+		38280, // 必殺紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		38281, // 鬥志紋章 - 爆發陷阱箭矢	0	0	icon_crest.crestexplosiontraparrow_tex
+		38282, // 神速紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		38283, // 鬥志紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		38450, // 集中紋章 - 麻痺陷阱箭矢	0	0	icon_crest.crestparalysistraparrow_tex
+		38451, // 集中紋章 - 蜘蛛陷阱箭矢	0	0	icon_crest.crestwebtraparrow_tex
+		38452, // 鬥志紋章 - 爆發陷阱箭矢	0	0	icon_crest.crestexplosiontraparrow_tex
+		38900, // 集中紋章 - 瞬間移動	0	0	icon_crest.crestshortteleport_tex
+		38901, // 追蹤紋章 - 淨化彈	0	0	icon_crest.crestpurifyshot_tex
+		38902, // 助力紋章 - 轉生祝福	0	0	icon_crest.crestautoresurrect_tex
+		38903, // 集中紋章 - 精靈召喚：生命精靈	0	0	icon_crest.crestsummonspiritofheal_tex
+		38904, // 時間紋章 - 閃光彈	0	0	icon_crest.crestflashball_tex
+		38905, // 命中紋章 - 恢復彈	0	0	icon_crest.cresthealshot_tex
+		38906, // 連續 精神紋章 - 痛苦咒縛	0	0	icon_crest.crestpainfulshackle_tex
+		38907, // 時間紋章 - 召喚精靈：閃電精靈	0	0	icon_crest.crestsummonspiritofrange_tex
+		38908, // 精神紋章 - 流沙束縛	0	0	icon_crest.crestshackleofquicksand_tex
+		38909, // 體力紋章 - 閃光彈	0	0	icon_crest.crestflashball_tex
+		38910, // 機會紋章 - 起身攻擊	0	0	icon_crest.crestrisingattack_tex
+		38911, // 平衡紋章 - 起身攻擊	0	0	icon_crest.crestrisingattack_tex
+		38912, // 命中紋章 - 轉生祝福	0	0	icon_crest.crestautoresurrect_tex
+		38913, // 集中紋章 - 流沙束縛	0	0	icon_crest.crestshackleofquicksand_tex
+		38914, // 協力紋章 - 精靈召喚：守護精靈	0	0	icon_crest.crestsummonspiritofaggro_tex
+		38915, // 救援紋章 - 靈氣召喚：庇護	0	0	icon_crest.crestenergiesofprotection_tex
+		38916, // 神速紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		38917, // 集中紋章 - 轉生祝福	0	0	icon_crest.crestautoresurrect_tex
+		38918, // 特質紋章 - 恢復精氣晶球	0	0	icon_crest.cresthprefresher_tex
+		38919, // 時間紋章 - 生命精靈	0	0	icon_crest.crestsummonspiritofheal_tex
+		38920, // 追蹤紋章 - 轉生祝福	0	0	icon_crest.crestautoresurrect_tex
+		38921, // 鬥志紋章 - 懲罰帳幕	0	0	icon_crest.crestpunishingshield_tex
+		38922, // 保護紋章 - 精氣吸收	0	0	icon_crest.crestsuckhp_tex
+		38923, // 集中紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		38924, // 鬥志紋章 - 精靈召喚：守護精靈	0	0	icon_crest.crestsummonspiritofaggro_tex
+		38925, // 集中紋章 - 瞬間移動	0	0	icon_crest.crestshortteleport_tex
+		38926, // 命中紋章 - 恢復彈	0	0	icon_crest.cresthealshot_tex
+		38927, // 機會紋章 - 起身攻擊	0	0	icon_crest.crestrisingattack_tex
+		38928, // 協力紋章 - 精靈召喚：守護精靈	0	0	icon_crest.crestsummonspiritofaggro_tex
+		38929, // 救援紋章 - 靈氣召喚：保護	0	0	icon_crest.crestenergiesofprotection_tex
+		38930, // 弱化紋章 - 痛苦咒縛	0	0	icon_crest.crestpainfulshackle_tex
+		38931, // 時間紋章 - 疫病長槍	0	0	icon_crest.crestplague_tex
+		38932, // 集中紋章 - 守護盔甲	0	0	icon_crest.crestarmorofprotection_tex
+		38933, // 集中紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		38934, // 連續鬥志紋章 (審判之手) - 魔力再生、全神卷軸	0	0	icon_crest.crestmanarejuvenation_tex
+		38935, // 機會紋章 - 懲罰之手	0	0	icon_crest.crestpunishingtouch_tex
+		38936, // 弱化紋章 - 連鎖天罰	0	0	icon_crest.crestdivineretribution_tex
+		38937, // 連續 鬥志紋章 [懲罰之手] - 審判之手	0	0	icon_crest.crestdamagedeal_tex
+		38938, // 集中紋章 - 乏力預言	0	0	icon_crest.crestprophecyoflethargy_tex
+		38939, // 集中紋章 - 束縛烙印	0	0	icon_crest.crestsanctuary_tex
+		38940, // 精神紋章 - 魔力再生、全神卷軸	0	0	icon_crest.crestmanarejuvenation_tex
+		38941, // 靈魂紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		38942, // 範圍紋章 - 救援之手、全神援手	0	0	icon_crest.cresthelpinghand_tex
+		38943, // 集中紋章 - 神之氣息	0	0	icon_crest.crestgodbreath_tex
+		38944, // 連續 鬥志紋章 (飛劍重擊斬) - 飛劍劈擊	0	0	icon_crest.crestchainsmash_tex
+		38945, // 鬥志紋章 - 飛劍最後的一擊	0	0	icon_crest.crestchainblow_tex
+		38946, // 必殺紋章 - 飛劍最後的一擊	0	0	icon_crest.crestchainblow_tex
+		38947, // 集中紋章 - 飛劍迴旋刀刃	0	0	icon_crest.crestchainblade_tex
+		38948, // 集中紋章 - 飛劍向上揮擊	0	0	icon_crest.crestchainuppercut_tex
+		38949, // 連續 鬥志紋章 (飛劍迴旋刀刃) - 飛劍向上揮擊	0	0	icon_crest.crestchainuppercut_tex
+		38950, // 活力紋章 - 瞬間跳躍	0	0	icon_crest.crestinstantleap_tex
+		38951, // 鬥志紋章 - 飛劍迴旋刀刃	0	0	icon_crest.crestchainblade_tex
+		38952, // 連續 鬥志紋章 [飛劍重擊斬] - 飛劍揮舞	0	0	icon_crest.crestchainbrandish_tex
+		38953, // 必殺紋章 - 飛劍重擊斬	0	0	icon_crest.crestchainsuperblow_tex
+		38954, // 集中紋章 - 撕咬擊	0	0	icon_crest.cresthideindarkness_tex
+		38955, // 時間紋章 - 撕咬擊	0	0	icon_crest.cresthideindarkness_tex
+		38956, // 鬥志紋章 - 揮舞/推功	0	0	icon_crest.crestgunbrandish_tex
+		38957, // 活力紋章 - 火箭騰飛	0	0	icon_crest.crestrocketjump_tex
+		38958, // 集中紋章 - 裝填魔力	0	0	icon_crest.crestreload_tex
+		38959, // 鬥志紋章 - 設置哨兵塔	0	0	icon_crest.crestsummonsentrytower_tex
+		38960, // 集中紋章 - 命令：自爆	0	0	icon_crest.crestcommand_selfdestruct_tex
+		38961, // 連續鬥志紋章 (發射散彈) - 滾動：裝填散彈	0	0	icon_crest.crestambushrolling_tex
+		38962, // 必殺紋章 - 發射爆擊彈	0	0	icon_crest.crestmortarshot_tex
+		38963, // 鬥志紋章 - 發射散彈	0	0	icon_crest.crestbuckshot_tex
+		38964, // 命中紋章 - 發射速射炮	0	0	icon_crest.crestgatlingshot_tex
+		38965, // 必殺紋章 - 發射秘傳導彈	0	0	icon_crest.crestaimedshot_tex
+		38966, // 鬥志紋章 - 殲滅之光	0	0	icon_crest.crestflashcannon_tex
+		38967, // 集中紋章 - 前滾翻: 裝填散彈	0	0	icon_crest.crestambushrolling_tex
+		39100, // 精神紋章 - 靈氣召喚：庇護	0	0	icon_crest.crestenergiesofprotection_tex
+		39550, // 救援紋章 - 治癒祈禱	0	0	icon_crest.cresthealingpray_tex
+		39551, // 連續 鬥志紋章 - 審判之手	0	0	icon_crest.crestdamagedeal_tex
+		39552, // 精神紋章 - 魔力恢復	0	0	icon_crest.crestmpcharge_tex
+		39553, // 連續 鬥志紋章 - 連鎖天罰	0	0	icon_crest.crestdivineretribution_tex
+		39554, // 體力紋章 - 亞倫的祝福	0	0	icon_crest.crestattackup_tex
+		39555, // 集中紋章 - 再生之風	0	0	icon_crest.cresthealingwind_tex
+		39556, // 集中紋章 - 乏力預言	0	0	icon_crest.crestprophecyoflethargy_tex
+		39557, // 精神紋章 - 再生聖域	0	0	icon_crest.crestsanctuaryofregeneration_tex
+		39558, // 精神紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		39559, // 集中紋章 - 束縛烙印	0	0	icon_crest.crestsanctuary_tex
+		39560, // 救援紋章 - 守護盔甲	0	0	icon_crest.crestarmorofprotection_tex
+		39561, // 精神紋章 - 魔力再生、全神卷軸	0	0	icon_crest.crestmanarejuvenation_tex
+		39562, // 自由紋章 - 治癒之光	0	0	icon_crest.cresthealinglightlockon_tex
+		39563, // 平衡紋章 - 守護者聖域	0	0	icon_crest.crestguardianaura_tex
+		39564, // 時間紋章 - 覺醒	0	0	icon_crest.crestrecovery_tex
+		39565, // 救援紋章 - 治癒翅膀	0	0	icon_crest.crestcurewing_tex
+		39566, // 決心紋章 - 亞倫的祝福	0	0	icon_crest.crestattackup_tex
+		39567, // 神速紋章 - 魔力恢復	0	0	icon_crest.crestmpcharge_tex
+		39568, // 精神紋章 -  再生之風	0	0	icon_crest.cresthealingwind_tex
+		39569, // 靈魂紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		39570, // 集中紋章 - 前線維持	0	0	icon_crest.crestholdtheline_tex
+		39571, // 時間紋章 - 前線維持	0	0	icon_crest.crestholdtheline_tex
+		39572, // 鬥志紋章 - 下顎粉碎	0	0	icon_crest.crestjawbreaker_tex
+		39573, // 連續 鬥志紋章 - 下顎粉碎	0	0	icon_crest.crestjawbreaker_tex
+		39574, // 精神紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		39575, // 神速紋章 - 魔力爆發	0	0	icon_crest.crestmanaburst_tex
+		39576, // 集中紋章 - 空間扭曲	0	0	icon_crest.crestdistortionfield_tex
+		39577, // 時間紋章 - 空間扭曲	0	0	icon_crest.crestdistortionfield_tex
+		39578, // 鬥志紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		39579, // 神速紋章 - 雷龍一擊	0	0	icon_crest.crestthunderdrake_tex
+		39580, // 集中紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		39581, // 精神紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		39582, // 平衡紋章 - 執念	0	0	icon_crest.cresttenacity_tex
+		39583, // 精神紋章 - 救援之手、救援之手	0	0	icon_crest.cresthelpinghand_tex
+		39584, // 靈魂紋章 - 復活	0	0	icon_crest.crestresurrect_tex
+		39585, // 時間紋章 - 痛苦咒縛	0	0	icon_crest.crestpainfulshackle_tex
+		39586, // 集中紋章 - 撕咬擊	0	0	icon_crest.cresthideindarkness_tex
+		39587, // 集中紋章 - 束縛詛咒	0	0	icon_crest.crestbindingblade_tex
+		39588, // 集中紋章 - 必殺意志	0	0	icon_crest.crestdeadlywill_tex
+		39589, // 鬥志紋章 - 連續攻擊	0	0	icon_crest.crestbindingblade_tex
+		39590, // 集中紋章 - 火花狂戰士	0	0	icon_crest.crestselfbuff_tex
+		39591, // 神速紋章 - 前進橫劈	0	0	icon_crest.crestsideslash_tex
+		39592, // 必殺紋章 - 剛氣飛揚	0	0	icon_crest.crestthrowaxe_tex
+		39593, // 野獸紋章 - 前線維持	0	0	icon_crest.crestholdtheline_tex
+		39594, // 集中紋章 - 下顎粉碎	0	0	icon_crest.crestjawbreaker_tex
+		39595, // 集中紋章 - 魔力盾牌	0	0	icon_crest.crestmanaburst_tex
+		39596, // 精神紋章 - 救援之手、救援之手	0	0	icon_crest.cresthelpinghand_tex
+		39597, // 集中紋章 - 神之氣息	0	0	icon_crest.crestgodbreath_tex
+		39598, // 集中紋章 - 神秘晶球	0	0	icon_crest.crestmysticorb_tex
+		39599, // 必殺紋章 - 飛劍重擊斬	0	0	icon_crest.crestchainsuperblow_tex
+		39600, // 精神紋章 - 暗黑爆炸	0	0	icon_crest.crestdarkexplosion_tex
+		39601, // 連續 鬥志紋章 - 飛劍揮舞	0	0	icon_crest.crestchainbrandish_tex
+		39602, // 鬥志紋章 - 飛劍迴旋刀刃	0	0	icon_crest.crestchainblade_tex
+		39603, // 集中紋章 - 飛劍強擊	0	0	icon_crest.crestchainstrike_tex
+		39604, // 必殺紋章 - 發射爆擊彈	0	0	icon_crest.crestmortarshot_tex
+		39605, // 鬥志紋章 - 發射散彈	0	0	icon_crest.crestbuckshot_tex
+		39606, // 鬥志紋章 - 揮舞/推功	0	0	icon_crest.crestgunbrandish_tex
+		39607, // 精神紋章 - 發射速射炮	0	0	icon_crest.crestgatlingshot_tex
+		39608, // 命中紋章 - 發射速射炮	0	0	icon_crest.crestgatlingshot_tex
+		39609, // 鬥志紋章 - 發射秘傳衝擊彈	0	0	icon_crest.crestarcaneshockshot01_tex
+		39610, // 助力紋章 - 發射秘傳衝擊彈	0	0	icon_crest.crestarcaneshockshot01_tex
+		39611, // 必殺紋章 - 發射秘傳導彈	0	0	icon_crest.crestaimedshot_tex
+		39612, // 鬥志紋章 - 投擲秘傳手榴彈	0	0	icon_crest.crestarcanegrenadethrow_tex
+		39613, // 集中紋章 - 火箭騰飛	0	0	icon_crest.crestrocketjump_tex
+		39614, // 魔攻用臨時紋章data	0	0	icon_crest.crestflashcannon_tex
+		39615, // 魔攻用臨時紋章data	0	0	icon_crest.crestreload_tex
+		39616, // 集中紋章 - 殲滅之光	0	0	icon_crest.crestflashcannon_tex
+		39617, // 精神紋章 - 裝填魔力	0	0	icon_crest.crestreload_tex
+		39618, // 集中紋章 - 設置哨兵塔	0	0	icon_crest.crestsummonsentrytower_tex
+		39619, // 鬥志紋章 - 殲滅之光	0	0	icon_crest.crestflashcannon_tex
+		39620, // 集中紋章 - 前滾翻: 裝填散彈	0	0	icon_crest.crestambushrolling_tex
+		39621, // 集中紋章 - 命令：電荷逆流	0	0	icon_crest.crestcommand_counterflow_tex
+		39750, // 集中紋章 - 治癒翅膀	0	0	icon_crest.crestcurewing_tex
+		39751, // 集中紋章 - 復活庇護	0	0	icon_crest.crestselfpreresurrection_tex
+		39752, // 鬥志紋章 - 連打	0	0	icon_crest.crestcomboattack01_tex
+		39753, // 集中紋章 - 迴旋踢	0	0	icon_crest.crestupperkick_tex
+		39754, // 集中紋章 - 飛凰怒天	0	0	icon_crest.crestdragonrisingblow_tex
+		39755, // 精神紋章 - 地面強打	0	0	icon_crest.crestpoundonground_tex
+		39756, // 必殺紋章 - 地面強打	0	0	icon_crest.crestpoundonground_tex
+		39757, // 鬥志紋章 - 地面強打	0	0	icon_crest.crestpoundonground_tex
+		39758, // 鬥志紋章 - 衝擊波	0	0	icon_crest.crestblowattack_tex
+		39759, // 必殺紋章 - 衝擊波	0	0	icon_crest.crestblowattack_tex
+		39760, // 機會紋章 - 昇天拳	0	0	icon_crest.crestrisingblow_tex
+		39761, // 精神紋章 - 昇天拳	0	0	icon_crest.crestrisingblow_tex
+		39762, // 鬥志紋章 - 狂暴連打	0	0	icon_crest.crestrapidattack_tex
+		39763, // 必殺紋章 - 狂暴連打	0	0	icon_crest.crestrapidattack_tex
+		39764, // 精神紋章 - 狂暴連打	0	0	icon_crest.crestrapidattack_tex
+		39765, // 集中紋章 - 反擊	0	0	icon_crest.crestcounterattack2_tex
+		39766, // 慵懶紋章 - 憤怒誘發	0	0	icon_crest.crestenrage_tex
+		39767, // 鬥志紋章 - 昇天拳	0	0	icon_crest.crestrisingblow_tex
+		39768, // 鬥志紋章 - 強打	0	0	icon_crest.crestsmashattack02_tex
+		39769, // 鬥志紋章 - 反擊	0	0	icon_crest.crestcounterattack2_tex
+		39770, // 鬥志紋章 - 憤怒亂打	0	0	icon_crest.crestdashattack_tex
+		39771, // 特質紋章- 憤怒亂打	0	0	icon_crest.crestdashattack_tex
+		39772, // 鬥志紋章 - 空中連擊	0	0	icon_crest.crestcatchair_tex
+		39773, // 集中紋章 - 瞬閃	0	0	icon_crest.crestinstancerush_tex
+		39774, // 必殺紋章 - 強打	0	0	icon_crest.crestsmashattack02_tex
+		39775, // 連續 鬥志紋章 - 迴旋踢	0	0	icon_crest.crestupperkick_tex
+		39776, // 必殺紋章 - 地面強打	0	0	icon_crest.crestpoundonground_tex
+		39777, // 必殺紋章 - 衝擊波	0	0	icon_crest.crestblowattack_tex
+		39778, // 必殺紋章 - 上踢	0	0	icon_crest.crestkick2_tex
+		39779, // 鬥志紋章 - 連續攻擊	0	0	icon_crest.cr12_meleecombo
+		39780, // 助力紋章 - 標槍連射	0	0	icon_crest.cr12_rapidshot
+		39781, // 集中紋章 - 火焰彈投擲	0	0	icon_crest.cr12_flamebomb
+		39782, // 鬥志紋章 - 快速砍擊	0	0	icon_crest.cr12_rapidslash
+		39783, // 機會紋章 - 後方移動術	0	0	icon_crest.cr12_catchback
+		39784, // 必殺紋章 - 爆炎術	0	0	icon_crest.cr12_flamestrike
+		39785, // 連續鬥志紋章 - 三角砍擊	0	0	icon_crest.cr12_airstepstrike
+		39786, // 必殺紋章 - 三角砍擊	0	0	icon_crest.cr12_airstepstrike
+		39787, // 鬥志紋章 - 扭轉砍擊	0	0	icon_crest.cr12_rotateslash
+		39788, // 連續鬥志紋章 - 二段砍擊	0	0	icon_crest.cr12_twinslash
+		39789, // 必殺紋章 - 二段砍擊	0	0	icon_crest.cr12_twinslash
+		39790, // 助力紋章 - 火焰術	0	0	icon_crest.cr12_flamebreath
+		39791, // 特質紋章 -展開手裏劍	0	0	icon_crest.cr12_rotateshurikenshot
+		39792, // 鬥志紋章 - 旋風手裏劍投擲	0	0	icon_crest.cr12_tornadoshot
+		39793, // 集中紋章 - 擊中胸口	0	0	icon_crest.cr12_evadestingshot
+		39794, // 集中紋章 - 標槍連射	0	0	icon_crest.cr12_rapidshot
+		39795, // 集中紋章 - 快速砍擊	0	0	icon_crest.cr12_rapidslash
+		39796, // 鬥志紋章 - 爆炎術	0	0	icon_crest.cr12_flamestrike
+		39797, // 集中紋章 - 迴避煙幕術	0	0	icon_crest.cr12_smokebomb
+		39798, // 集中紋章 - 扭轉砍擊	0	0	icon_crest.cr12_rotateslash
+		39799, // 神速紋章 - 查克拉恢復術	0	0	icon_crest.cr12_chakracharge
+		39800, // 鬥志紋章 - 擊中胸口	0	0	icon_crest.cr12_evadestingshot
+		39801, // 神速紋章 - 連續攻擊	0	0	icon_crest.cr12_meleecombo
+		39802, // 必殺紋章 - 爆炎術	0	0	icon_crest.cr12_flamestrike
+		39803, // 必殺紋章 - 二段砍擊	0	0	icon_crest.cr12_twinslash
+		39804, // 鬥志紋章 - 火焰術	0	0	icon_crest.cr12_flamebreath
+		39805, // 集中紋章 - 迴避啟動	0	0	icon_crest.cr12_dash
+		39806, // [傳說]機會紋章 - 一刀兩斷	0	0	icon_crest.crestcuttingslash_tex
+		39807, // [傳說]必殺紋章 - 全神一擊	0	0	icon_crest.crestsoulstrike_tex
+		39808, // [傳說]必殺紋章 - 昇天拳	0	0	icon_crest.crestrisingblow_tex
+		39809, // [傳說]機會紋章 - 無雙亂舞 : 劈擊	0	0	icon_crest.crestdualslash_tex
+		39810, // [傳說]必殺紋章 - 壓倒	0	0	icon_crest.crestoverhelm_tex
+		39811, // [傳說]機會紋章 - 治癒翅膀	0	0	icon_crest.crestcurewing_tex
+		39812, // [傳說]機會紋章 - 生命精靈	0	0	icon_crest.crestsummonspiritofheal_tex
+		39813, // [傳說]機會紋章 - 飛劍重擊斬	0	0	icon_crest.crestchainsuperblow_tex
+		39814, // [傳說]鬥志紋章 - 迴避煙幕術	0	0	icon_crest.cr12_smokebomb
+		39815, // [傳說]神速紋章 - 發射一般炸彈	0	0	icon_crest.crestcannonshot_tex
+		39816, // [傳說]鬥志紋章 - 月光爆	0	0	icon_crest.crest_throwglave_tex
+		39817, // [傳說]機會紋章 - 打雷重擊	0	0	icon_crest.cr5_lightningstruck
+		39818, // [傳說]必殺紋章 - 穿透射擊	0	0	icon_crest.crestthrougharrow_tex
+		39819, // 鬥志紋章 - 二劍劍舞	0	0	icon_crest.crest_doublesworddance_tex
+		39820, // 鬥志紋章 - 正義跳躍	0	0	icon_crest.crest_justiceleap_tex
+		39821, // 鬥志紋章 - 三斬	0	0	icon_crest.crest_slidingslash_tex
+		39822, // 鬥志紋章 - 野獸的突進	0	0	icon_crest.crest_ragerush_tex
+		39823, // 鬥志紋章 - 冰槍	0	0	icon_crest.crest_icespear_tex
+		39824, // 鬥志紋章 - 風之步伐	0	0	icon_crest.crest_windwalk_tex
+		39825, // 範圍紋章 - 魔力爆發	0	0	icon_crest.crest_marbleexplosion_tex
+		39826, // 神速紋章 - 魔力再生、全神卷軸	0	0	icon_crest.crest_spirit2_tex
+		39827, // 鬥志紋章 - 飛劍逆收割	0	0	icon_crest.crest_reversewithdraw_tex
+		39828, // 鬥志紋章 - 神秘光線	0	0	icon_crest.crest_arcanebeam_tex
+		39829, // 鬥志紋章 - 原值暴擊	0	0	icon_crest.crest_oneinchpunch_tex
+		39830, // 鬥志紋章 - 機動攻擊術	0	0	icon_crest.crest_chakraemission_tex
+		39831, // 鬥志紋章 - 半月斬	0	0	icon_crest.crest_halfmoon_tex
+
 		98850, // 技能鍛鍊經驗值書籍 (小型)
 		98851, // 技能鍛鍊經驗值書籍 (中型)
 		98852, // 技能鍛鍊經驗值書籍 (大型)

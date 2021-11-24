@@ -85,11 +85,6 @@ module.exports = [
 
 	{key: "logItemId", name: `记录 Item_Id`, type: "bool"},
 	{key: "logNPC",    name: `记录 Spawn_Npc`, type: "bool"},
-	{key: "logBoss",   name: `记录 Boss_Skill`, type: "bool"},
-	{key: "D_Message", name: `记录 D_Message`, type: "bool"},
-	{key: "Q_Balloon", name: `记录 Q_Balloon`, type: "bool"},
-	{key: "projectile",name: `记录 Projectile`, type: "bool"},
-
 	{key: "logReputation", name: `记录 声望点数变更`, type: "bool"},
 
 	{key: "hideTank",    name: `屏蔽坦克(!re 手动刷新)`, type: "bool"},

@@ -32,8 +32,8 @@ const DefaultSettings = {
 	"restDungeon": true,
 	"lootingMethod" : true,
 
-	"autoRevive": true,
-	"instantRevive": true,
+	"autoRevive": false,
+	"instantRevive": false,
 
 	"falling": true,
 	"afker": true,
@@ -76,11 +76,6 @@ const DefaultSettings = {
 
 	"logItemId": false,
 	"logNPC": false,
-	"logBoss": false,
-	"D_Message": false,
-	"Q_Balloon": false,
-	"projectile": false,
-
 	"logReputation": false,
 
 	"hideTank": false,

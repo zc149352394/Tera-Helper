@@ -756,6 +756,18 @@ module.exports = function TeraHelper(mod) {
 			UseItem(e.type ? Set.servantGift : Set.servantFood)
 		}
 	})
+	// 记录声望点数
+	mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, e => {
+		mod.game.me.reputation = e.vanguardCredits
+	})
+	mod.hook('S_SEND_CHANGE_REPUTATION_POINT', 1, e => {
+		if (e.id == 609) mod.game.me.reputation += e.amount
+		if (!mod.settings.logReputation) return
+		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
+	})
+	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
+		if (e.button == 609) mod.game.me.reputation = e.tokens
+	})
 	
 	mod.hook('S_EACH_SKILL_RESULT', 14, e => {
 		if (mod.settings.fakeBossGage && e.target==Set.GageInfo.id && e.type==1) {
@@ -994,6 +1006,11 @@ module.exports = function TeraHelper(mod) {
 	})
 	
 	// User-Player
+	mod.dispatch.addDefinition('S_PARTY_INFO', 2, [
+		['gameId',  'uint64'],
+		['partyId', 'uint64'],
+		['raid',    'bool']
+	])
 	mod.hook('S_SPAWN_USER', (Ver<93?15 : Ver<105?16 : 17), e => {
 		// 尸体标记
 		if (mod.settings.deadMark) {
@@ -1193,7 +1210,7 @@ module.exports = function TeraHelper(mod) {
 	function UseItem(itemId) {
 		var itemData = mod.game.inventory.find(itemId)
 		if (!itemData || mod.game.me.mounted) return
-		
+		mod.command.message(`尝试使用 ${itemData.id} - ${itemData.name}`)
 		mod.send('C_USE_ITEM', 3, {
 			gameId: mod.game.me.gameId,
 			id: itemData.id,
@@ -1227,43 +1244,6 @@ module.exports = function TeraHelper(mod) {
 			// actions: ['OK', 'Cancel'],
 		})
 	}
-	
-	let boss_ID = 0
-	mod.hook('S_BOSS_GAGE_INFO', 3, e => {
-		if (boss_ID && boss_ID==e.id) return
-		boss_ID = e.id
-		if (mod.settings.logBoss) mod.log(`S_BOSS_GAGE_INFO|${e.huntingZoneId}|${e.templateId}|${e.id}`)
-	})
-	mod.hook('S_ACTION_STAGE', 9, e => {
-		if (!mod.settings.logBoss || !boss_ID || boss_ID!=e.gameId) return
-		mod.command.message(`ACTION|${e.skill.huntingZoneId}|${e.templateId}|${e.skill.id}|${e.stage}`)
-	})
-	mod.hook('S_DUNGEON_EVENT_MESSAGE', 2, e => {
-		if (!mod.settings.D_Message) return
-		var msg_Id = parseInt(e.message.match(/\d+/ig)) % 1000
-		mod.command.message("D-Message: " + e.message + " | " + msg_Id)
-	})
-	mod.hook('S_QUEST_BALLOON', 1, e => {
-		if (!mod.settings.Q_Balloon) return
-		var msg_Id = parseInt(e.message.match(/\d+/ig)) % 1000
-		mod.command.message("Q-Balloon: " + e.message + " | " + msg_Id)
-	})
-	mod.hook('S_SPAWN_PROJECTILE', (Ver<101?5 : 6), e => {
-		if (!mod.settings.projectile || boss_ID != e.gameId) return
-		mod.command.message("Spawn-Projec: [" + e.gameId + "] " + e.id + "_" + e.skill.id)
-	})
-	
-	mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, e => {
-		mod.game.me.reputation = e.vanguardCredits
-	})
-	mod.hook('S_SEND_CHANGE_REPUTATION_POINT', 1, e => {
-		if (e.id == 609) mod.game.me.reputation += e.amount
-		if (!mod.settings.logReputation) return
-		mod.command.message(`巴其温侦察队声望点数: ` + mod.game.me.reputation)
-	})
-	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
-		if (e.button == 609) mod.game.me.reputation = e.tokens
-	})
 	
 	this.destructor = () => {
 		if (ui) { ui.close(), ui = null }
