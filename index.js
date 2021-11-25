@@ -1210,7 +1210,7 @@ module.exports = function TeraHelper(mod) {
 	function UseItem(itemId) {
 		var itemData = mod.game.inventory.find(itemId)
 		if (!itemData || mod.game.me.mounted) return
-		mod.command.message(`尝试使用 ${itemData.id} - ${mod.game.inventory.find(itemId).data.name}`)
+		mod.command.message(`尝试使用 ${itemData.id} - ${itemData.data.name}`)
 		mod.send('C_USE_ITEM', 3, {
 			gameId: mod.game.me.gameId,
 			id: itemData.id,
