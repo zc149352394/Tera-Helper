@@ -1193,7 +1193,7 @@ module.exports = function TeraHelper(mod) {
 		mod.game.me.mp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
 		
 		if (!useMpPot._destroyed) return
-		if (mod.game.me.hp<mpPotList[0].use_at) {
+		if (mod.game.me.mp<mpPotList[0].use_at) {
 			raiseMp()
 			useMpPot = mod.setInterval(raiseMp, 1000)
 		} else {
@@ -1203,7 +1203,7 @@ module.exports = function TeraHelper(mod) {
 	function raiseMp() {
 		if (mod.game.me.mounted || mod.game.me.inBattleground) return
 		mpPotList.forEach(item => {
-			if (mod.game.me.hp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
+			if (mod.game.me.mp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
 		})
 	}
 	
