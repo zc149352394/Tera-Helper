@@ -1,17 +1,20 @@
 module.exports = [
-	{key: "notifierMsg", name: `暂离通知`, type: "bool"},
-	
-	{key: "repeatUseItem",  name: `循环使用道具`, type: "bool"},
-	{key: "repeatUseDelay", name: `循环使用间隔`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
+	{key: "boxOpen",  name: `快速开盒脚本`, type: "bool"},
+	{key: "openDelay", name: `开盒间隔(ms)`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
 
+	{key: "repeatUseItem",  name: `循环使用道具`, type: "bool"},
+	{key: "repeatUseDelay", name: `循环使用间隔(ms)`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
+
+	{key: "notifierMsg", name: `暂离状态 Windows通知`, type: "bool"},
+	
 	{key: "autoHpPot", name: `自动喝HP药水`, type: "bool"},
 	{key: "autoMpPot", name: `自动喝MP药水`, type: "bool"},
 
 	{key: "autoServant",  name: `喂养宠物/跟班`, type: "bool"},
-	{key: "servantUseAt", name: `设定喂养比例%`, type: "number", min: 1.0, max: 100.0, step: 1.0},
+	{key: "servantUseAt", name: `设定喂养值(%)`, type: "number", min: 1.0, max: 100.0, step: 1.0},
 
 	{key: "autoLoot",   name: `自动拾取`, type: "bool"},
-	{key: "lootDelay",  name: `拾取间隔`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
+	{key: "lootDelay",  name: `拾取间隔(ms)`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
 	{key: "filterMode", name: `拾取模式`, type: "select", options: [{name: "过滤拾取",key: 0}, {name: "全部拾取",key: 1}]},
 	{key: "lootMode",   name: `触发方式`, type: "select", options: [{name: "自动开始",key: 0}, {name: "手动开始",key: 1}]},
 	{key: "ignoreItem", name: `屏蔽-掉落物品`, type: "bool"},
@@ -77,7 +80,7 @@ module.exports = [
 	{key: "fakeBossGage", name: `伪造血条(奥勒昙/哈迦叻/盖洛司)`, type: "bool"},
 
 	{key: "tipGather",  name: `光柱标记-采集物`, type: "bool"},
-	{key: "gatherCategory", name: "采集物 类型", type: "select",
+	{key: "gatherCategory", name: "选择-采集物类型", type: "select",
 		options: [
 			{name: "1-杂草",key: 1},
 			{name: "2-植物",key: 2},
@@ -92,8 +95,8 @@ module.exports = [
 	{key: "logNPC",    name: `记录 Spawn_Npc`, type: "bool"},
 	{key: "logReputation", name: `记录 声望点数变更`, type: "bool"},
 
-	{key: "hideTank",    name: `屏蔽坦克(!re 手动刷新)`, type: "bool"},
-	{key: "hideDps",     name: `屏蔽打手(!re 手动刷新)`, type: "bool"},
-	{key: "hideHeal",    name: `屏蔽补师(!re 手动刷新)`, type: "bool"},
-	{key: "onlyMembers", name: `仅显队员(!re 手动刷新)`, type: "bool"}
+	{key: "hideTank",    name: `屏蔽坦克(输入 !re)刷新`, type: "bool"},
+	{key: "hideDps",     name: `屏蔽打手(输入 !re)刷新`, type: "bool"},
+	{key: "hideHeal",    name: `屏蔽补师(输入 !re)刷新`, type: "bool"},
+	{key: "onlyMembers", name: `仅显队员(输入 !re)刷新`, type: "bool"}
 ]

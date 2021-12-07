@@ -1,8 +1,11 @@
 const DefaultSettings = {
-	"notifierMsg": true,
-	
+	"boxOpen": false,
+	"openDelay": 100,
+
 	"repeatUseItem": false,
 	"repeatUseDelay": 1000,
+	
+	"notifierMsg": true,
 	
 	"autoHpPot": true,
 	"autoMpPot": true,

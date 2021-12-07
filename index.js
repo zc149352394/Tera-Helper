@@ -51,6 +51,7 @@ module.exports = function TeraHelper(mod) {
 				command: `fov ${mod.settings.fovValue}`
 			})
 			
+			if (!mod.settings.boxOpen) mod.clearInterval(box)
 			if (!mod.settings.repeatUseItem) mod.clearInterval(repeatUseItem)
 		})
 	}
@@ -1235,11 +1236,21 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	
-	// 循环使用道具
-	let repeatUseItem = { _destroyed: true }
+	// 循环使用道具 / 快速开盒
+	let repeatUseItem = { _destroyed: true }, boxItem = null, box = { _destroyed: true }
 	mod.hook('C_USE_ITEM', 3, e => {
+		boxItem = e.id
 		if (!mod.settings.repeatUseItem || !useMpPot._destroyed) return
 		repeatUseItem = mod.setInterval(UseItem, mod.settings.repeatUseDelay, e.id)
+	})
+	mod.hook('S_GACHA_START', (Ver<99?1 : 2), e => {
+		if (!box._destroyed || !mod.settings.boxOpen) return
+		box = mod.setInterval(() => {
+			mod.send('C_GACHA_TRY', 2, { id: boxItem, amount: 1})
+		}, mod.settings.openDelay)
+	})
+	mod.hook('C_GACHA_CANCEL', 1, e => {
+		if (!box._destroyed) mod.clearInterval(box)
 	})
 	
 	function UseItem(itemId) {

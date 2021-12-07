@@ -7,7 +7,7 @@
         "reloadable": true,
         "settingsFile": "config.json",
         "settingsMigrator": "./settings/migrator.js",
-        "settingsVersion": 8
+        "settingsVersion": 9
     },
     "author": "ZC",
     "description": "TERA插件合集, 兼容客户端 92.03 - 109.02",
