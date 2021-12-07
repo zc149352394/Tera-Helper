@@ -1,4 +1,9 @@
 module.exports = [
+	{key: "notifierMsg", name: `暂离通知`, type: "bool"},
+	
+	{key: "repeatUseItem",  name: `循环使用道具`, type: "bool"},
+	{key: "repeatUseDelay", name: `循环使用间隔`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
+
 	{key: "autoHpPot", name: `自动喝HP药水`, type: "bool"},
 	{key: "autoMpPot", name: `自动喝MP药水`, type: "bool"},
 

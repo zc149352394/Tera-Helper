@@ -50,6 +50,8 @@ module.exports = function TeraHelper(mod) {
 			mod.send('S_STEER_DEBUG_COMMAND', 1, {
 				command: `fov ${mod.settings.fovValue}`
 			})
+			
+			if (!mod.settings.repeatUseItem) mod.clearInterval(repeatUseItem)
 		})
 	}
 	
@@ -527,19 +529,45 @@ module.exports = function TeraHelper(mod) {
 		if (mod.settings.instantEvolution) return false
 	})
 	// 瞬间维修 Instant-Repair
-	mod.dispatch.addDefinition('C_REGISTER_REPAIR_ITEM', 1, [ // 数据包总长度 4+16
-		['contract', 'uint32'],
-		['dbid',     'uint64'],
-		['id',       'int32']
-	])
-	mod.dispatch.addDefinition('C_START_REPAIR_ITEM', 1, [ // 数据包总长度 4+4
-		['contract', 'uint32']
-	])
-	mod.dispatch.addDefinition('C_REQUEST_REPAIR_ITEM', 1, [ // 数据包总长度 4+16
-		['contract', 'uint32'],
-		['dbid',     'uint64'],
-		['id',       'int32']
-	])
+	if (Ver < 98) {
+		mod.dispatch.addDefinition('C_REGISTER_REPAIR_ITEM', 1, [ // 数据包总长度 4+16
+			['contract', 'uint32'],
+			['dbid',     'uint64'],
+			['id',       'int32']
+		])
+		mod.dispatch.addDefinition('C_START_REPAIR_ITEM', 1, [ // 数据包总长度 4+4
+			['contract', 'uint32']
+		])
+		mod.dispatch.addDefinition('C_REQUEST_REPAIR_ITEM', 1, [ // 数据包总长度 4+16
+			['contract', 'uint32'],
+			['dbid',     'uint64'],
+			['id',       'int32']
+		])
+	} else {
+		mod.dispatch.addDefinition('C_REGISTER_REPAIR_ITEM', 1, [ // 数据包总长度 4+16+8
+			['counter', 'uint32'], // times triggered
+			['unk', 'int32'], // unkown
+			
+			['contract', 'uint32'],
+			['dbid',     'uint64'],
+			['id',       'int32']
+		])
+		mod.dispatch.addDefinition('C_START_REPAIR_ITEM', 1, [ // 数据包总长度 4+4+8
+			['counter', 'uint32'], // times triggered
+			['unk', 'int32'], // unkown
+			
+			['contract', 'uint32']
+		])
+		mod.dispatch.addDefinition('C_REQUEST_REPAIR_ITEM', 1, [ // 数据包总长度 4+16+8
+			['counter', 'uint32'], // times triggered
+			['unk', 'int32'], // unkown
+			
+			['contract', 'uint32'],
+			['dbid',     'uint64'],
+			['id',       'int32']
+		])
+	}
+	
 	let repairing = null
 	mod.tryHook('C_REGISTER_REPAIR_ITEM', 1, e => { repairing = e })
 	mod.tryHook('C_START_REPAIR_ITEM', 1, e => {
@@ -1207,6 +1235,13 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	
+	// 循环使用道具
+	let repeatUseItem = { _destroyed: true }
+	mod.hook('C_USE_ITEM', 3, e => {
+		if (!mod.settings.repeatUseItem || !useMpPot._destroyed) return
+		repeatUseItem = mod.setInterval(UseItem, mod.settings.repeatUseDelay, e.id)
+	})
+	
 	function UseItem(itemId) {
 		var itemData = mod.game.inventory.find(itemId)
 		if (!itemData || mod.game.me.mounted) return
@@ -1234,6 +1269,7 @@ module.exports = function TeraHelper(mod) {
 		})
 	}
 	async function notifierMsg(msg, title = 'Tera Notification', icon='tera.png') {
+		if (!mod.settings.notifierMsg) return
 		mod.clientInterface.flashWindow()
 		
 		if (Ver<100 || await mod.clientInterface.hasFocus()) return

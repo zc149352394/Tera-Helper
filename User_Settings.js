@@ -23,8 +23,8 @@ module.exports = {
 			"S_UPDATE_SERVANT_INFO": 64247,
 			"C_FIELD_EVENT_BAN": 54893,
 			"C_REGISTER_REPAIR_ITEM": 29131,
-			"C_START_REPAIR_ITEM": null,
-			"C_REQUEST_REPAIR_ITEM": null
+			"C_START_REPAIR_ITEM": 40841,
+			"C_REQUEST_REPAIR_ITEM": 50559
 		},
 		381092: { // TW-105.02
 			"C_SELECT_CHANNEL": 27357,
@@ -164,7 +164,7 @@ module.exports = {
 		{Zone: 9716, loc: {x:  49504, y: 129121, z:  3722}, w: -0.5, name: "飞艇下级 - 尾王"},
 		{Zone: 9916, loc: {x:  49502, y: 128693, z:  3713}, w: -0.5, name: "飞艇上级 - 尾王)"},
 	//  {Zone: 9777, loc: {x:-112673, y: -34856, z:   470}, w:  0.5, name: "古代地下水道 - 尾王"},
-	//  {Zone: 9781, loc: {x:  39419, y:-113077, z: 17212}, w:  0.5, name: "贝里克下级 - 尾王"},
+		{Zone: 9781, loc: {x:  39419, y:-113077, z: 17212}, w: 0.25, name: "贝里克下级 - 尾王"},
 		{Zone: 9739, loc: {x:  53847, y: -92865, z:  1378}, w:  0.7, name: "革命团-2王"},
 		{Zone: 3024, loc: {x:  50559, y: 161412, z:  1890}, w:  0.5, name: "阿勒卡夫孵化場(单人)"},
 		{Zone: 3025, loc: {x:  50559, y: 161412, z:  1890}, w:  0.5, name: "阿勒卡夫孵化場(组队)"}
@@ -468,13 +468,13 @@ module.exports = {
 		206883, // 時空精髓
 		221212, // 上锁的箱子
 		
-		// 89768, // 初階平衡武器強化石
-		// 89769, // 中階平衡武器強化石
-		// 89770, // 高階平衡武器強化石
+		89768, // 初階平衡武器強化石
+		89769, // 中階平衡武器強化石
+		89770, // 高階平衡武器強化石
 		
-		// 89771, // 初階平衡防具強化石
-		// 89772, // 中階平衡防具強化石
-		// 89773, // 高階平衡防具強化石
+		89771, // 初階平衡防具強化石
+		89772, // 中階平衡防具強化石
+		89773, // 高階平衡防具強化石
 		
 		// 98598, // 老舊的補給品
 		// 98599, // 恶魔的脚爪
@@ -500,7 +500,14 @@ module.exports = {
 		209901, // 技能鍛鍊經驗值書籍 I
 		209902, // 技能鍛鍊經驗值書籍 II
 		209903, // 技能鍛鍊經驗值書籍 III
-		209904  // 技能鍛鍊經驗值書籍 IV
+		209904, // 技能鍛鍊經驗值書籍 IV
+		
+		6335, // 爆炎長槍
+		6336, // 解放之石
+		98551, // 大地之石
+		98552, // 暴風之石
+		
+		70093 // 男子氣概藥水
 	],
 	ignoreItems: [
 		88892, // 生鏽的金屬雙劍
@@ -1327,19 +1334,22 @@ module.exports = {
 		hp:     // true: 回血药品 fals: 回蓝药品
 		use_at: // 触发自动喝药的 百分量 */
 		
-	//  {id: 6550, category: true, use_at: 65}, // 低级HP恢复药水
-	//  {id: 6551, category: true, use_at: 60}, // 中级HP恢复药水
-	//  {id: 6552, category: true, use_at: 55}, // 高级HP恢复药水
-	//  {id: 6553, category: true, use_at: 50}, // 最高级HP恢复药水
-		
 		{id: 6560, category: "mp", use_at: 80}, // 低级MP恢复药水
 		{id: 6561, category: "mp", use_at: 70}, // 中级MP恢复药水
 		{id: 6562, category: "mp", use_at: 50}, // 高级MP恢复药水
 		{id: 6563, category: "mp", use_at: 30}, // 最高级MP恢复药水
 		
+		{id: 6550, category: "hp", use_at: 65}, // 低级HP恢复药水
+		{id: 6551, category: "hp", use_at: 60}, // 中级HP恢复药水
+		{id: 6552, category: "hp", use_at: 55}, // 高级HP恢复药水
+		{id: 6553, category: "hp", use_at: 50}, // 最高级HP恢复药水
+		
 		{id:     28, category: "hp", use_at: 40}, // 凯亚的号角喇叭 100%
 		{id: 221225, category: "hp", use_at: 40}, // 凯亚的号角喇叭 100%
-		{id:    111, category: "hp", use_at: 30}, // 持续性恢复药水 75%
-		{id: 193027, category: "hp", use_at: 20}  // HP恢復藥水 75%
+		
+		{id:    114, category: "hp", use_at: 50}, // 聯盟補給品：急速恢復藥水
+		
+		// {id:    111, category: "hp", use_at: 30}, // 持续性恢复药水 75%
+		// {id: 193027, category: "hp", use_at: 20}  // HP恢復藥水 75%
 	]
 }

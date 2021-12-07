@@ -1,4 +1,9 @@
 const DefaultSettings = {
+	"notifierMsg": true,
+	
+	"repeatUseItem": false,
+	"repeatUseDelay": 1000,
+	
 	"autoHpPot": true,
 	"autoMpPot": true,
 
