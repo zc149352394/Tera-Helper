@@ -51,8 +51,8 @@ module.exports = function TeraHelper(mod) {
 				command: `fov ${mod.settings.fovValue}`
 			})
 			
-			if (!mod.settings.boxOpen) mod.clearInterval(box)
-			if (!mod.settings.repeatUseItem) mod.clearInterval(repeatUseItem)
+			if (!mod.settings.boxOpen) mod.clearAllIntervals(box)
+			if (!mod.settings.repeatUseItem) mod.clearAllIntervals(repeatUseItem)
 		})
 	}
 	
