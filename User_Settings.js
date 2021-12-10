@@ -11,7 +11,7 @@ module.exports = {
 			"C_REGISTER_REPAIR_ITEM": 45312,
 			"C_START_REPAIR_ITEM": 57907,
 			"C_REQUEST_REPAIR_ITEM": 23782,
-			
+
 			"S_UPDATE_GUILD_QUEST_STATUS": 25232,
 		},
 		376012: { // TW-100.02
@@ -75,7 +75,7 @@ module.exports = {
 			"C_REQUEST_REPAIR_ITEM": null,
 		}
 	},
-	
+
 	ignoreAbnormality: [
 		48732, // 刨冰
 		48734, // 醉意 I
@@ -83,15 +83,15 @@ module.exports = {
 		48736, // 醉意 III
 		48737, // 醉意 IV
 		48738, // 醉意 V
-		
+
 		70251, // 利卡諾勒啤酒
 		70252, // 覆盆子酒
 		70253, // 天蓮花酒
 		70254, // 萊納式黑啤酒
 		70255, // 塔克式蜂蜜南瓜酒
-		
+
 		476806, // 時空崩壞!
-		
+
 		630201, // 飛行計量條恢復
 		630202, // 飛行計量條恢復
 		630411, // 風之精髓
@@ -100,40 +100,40 @@ module.exports = {
 		631003, // 電能超負荷
 		631201, // 飛行計量條恢復
 		631202, // 飛行計量條恢復
-		
+
 		776017, // 暗黑力量
-		
+
 		806001, // 殭屍爆血效果
 		806002, // 解除殭屍爆血效果
 		811061, // 老舊的透明變身藥水
 		821101, // 憐憫
-		
+
 		905656, // 惡魔的微笑
 		905657, // 太陽之光
-		
+
 		7102001, // 魔力爆發
-		
+
 		45000011, // 奮進
 		45000012, // 奮進低落
-		
+
 		47660800, // 暗黑 I
 		47660900, // 閃光
 		47661000, // 暗黑 II
 		47662300, // 暗黑 I
-		
+
 		999001011 // 矇眼: 為了進行破西瓜遊戲遮住眼睛
 	],
-	
+
 	ignoreQuest: [
 		10005, 10006, 10007, 10008, 10009, 10010,
-		
+
 		10005001, // 貪婪的阿嵐夏討伐
 		10005003, // 貪婪的阿嵐夏
 		10006001, // 憤怒的卡魯古斯討伐
 		10006003, // 憤怒的卡魯古斯
 		10007001, // 虐殺的煞布拉尼惡討伐
 		10007003, // 虐殺的煞布拉尼惡
-		
+
 		10008001, // 貪婪的阿嵐夏討伐
 		10008003, // 貪婪的阿嵐夏
 		10009001, // 憤怒的卡魯古斯討伐
@@ -141,17 +141,17 @@ module.exports = {
 		10010001, // 虐殺的煞布拉尼惡討伐
 		10010003  // 虐殺的煞布拉尼惡
 	],
-	
+
 	archerTraps: [
 		150720, // 爆炸陷阱 VII
 		90920,  // 蜘蛛网陷阱 IX
 		100520, // 昏厥陷阱 V
-		
+
 		251020, // 爆发陷阱箭矢 X
 	//  240220, // 蜘蛛网陷阱箭矢 II
 		230320  // 麻痹陷阱箭矢 III
 	],
-	
+
 	dungeonTP: [
 		{Zone: 9070, loc: {x:-130559, y: -53523, z:  4434}, w: -0.5, name: "吹牛王"},
 		{Zone: 3012, loc: {x:-130617, y:-114086, z:   252}, w:  0.5, name: "训练所"},
@@ -169,7 +169,10 @@ module.exports = {
 		{Zone: 3024, loc: {x:  50559, y: 161412, z:  1890}, w:  0.5, name: "阿勒卡夫孵化場(单人)"},
 		{Zone: 3025, loc: {x:  50559, y: 161412, z:  1890}, w:  0.5, name: "阿勒卡夫孵化場(组队)"}
 	],
-	
+	DungeonCollectionTP: [
+		{Zone: 3026, loc: {x:  53385, y: 98768, z:  14833}, w:  -2, name: "凯尔-下级-采集点"}
+	],
+
 	servantFood: [
 		206046, // 普通飼料
 		206047, // 優質飼料
@@ -180,7 +183,7 @@ module.exports = {
 		206050, // 豬雕像
 		206051  // 波波利雕像
 	],
-	
+
 	retaliate: [
 		131000, //  0.Warrior   起身攻擊 X
 		111000, //  1.Lancer    起身攻擊 X
@@ -196,7 +199,7 @@ module.exports = {
 		101000, // 11.Ninja     起身攻擊 X
 		186000  // 12.Valkyrie  起身攻擊 X
 	],
-	
+
 	backstabs: {
 		0: { // Warrior 双刀
 			22: true // Backstab 後擒術
@@ -209,7 +212,7 @@ module.exports = {
 			6: true // Backstab 後擒術
 		},
 		10: { // Brawler 拳师
-			// Known Issue: Using Meat Grinder on a target in-range 
+			// Known Issue: Using Meat Grinder on a target in-range
 			// but not knocked up will still consume the cooldown.
 			20: true // Meat Grinder 空中連擊
 		},
@@ -220,68 +223,68 @@ module.exports = {
 			20: true // Backstab 月光煉
 		}
 	},
-	
+
 	gatherInfo: [
 		{id:   1, category: 1, msg: '坚韧的杂草'},
-		
+
 		{id:   2, category: 2, msg: '野生玉米'},
 		{id:   3 ,category: 2, msg: '野生红葡萄'},
 		{id:   4, category: 2, msg: '黄蘑菇'},
 		{id:   5, category: 2, msg: '老南瓜'},
 		{id:   6, category: 2, msg: '苹果树'},
-		
+
 		{id: 101, category: 3, msg: '岩石'},
-		
+
 		{id: 102, category: 4, msg: '钴矿石'},
 		{id: 103, category: 4, msg: '硒矿石'},
 		{id: 104, category: 4, msg: '水晶矿石'},
 		{id: 105, category: 4, msg: '秘银矿石'},
 		{id: 106, category: 4, msg: '碣矿石'},
-		
+
 		{id: 201, category: 5, msg: '无色结晶'},
-		
+
 		{id: 202, category: 6, msg: '赤色结晶'},
 		{id: 203, category: 6, msg: '绿色结晶'},
 		{id: 204, category: 6, msg: '青色结晶'},
 		{id: 205, category: 6, msg: '白色结晶'},
 		{id: 206, category: 6, msg: '被污染的花'}
 	],
-	
+
 	balls: [
 		{Zone: 630, id: 2000, name: "風之精髓"},
 		{Zone: 630, id: 3000, name: "風之精髓"},
 		{Zone: 630, id: 3002, name: "風之精髓"},
-		
+
 		{Zone: 631, id: 4001, name: "電能精髓"}
 	],
 	hideNPCs: [
 	//  {Zone: 444, id: 2201, name: "火神守護兵"},
-		
+
 		{Zone: 630, id: 2001, name: "火之精髓"},
 		{Zone: 630, id: 3001, name: "火之精髓"},
 		{Zone: 630, id: 3003, name: "火之精髓"},
-		
+
 		{Zone: 630, id: 2100, name: "風之沙漠幽靈"},
 		{Zone: 630, id: 2101, name: "風之沙漠幽靈"},
 		{Zone: 630, id: 2102, name: "風之沙漠幽靈"},
-		
+
 		{Zone: 631, id: 1001, name: "電能生成裝置"},
 		{Zone: 631, id: 1002, name: "電能生成裝置"},
-		
+
 		{Zone: 459, id: 2003, name: "恶灵岛下级 1号门"},
 		{Zone: 459, id:  200, name: "恶灵岛下级 2号门"},
 		{Zone: 459, id:  210, name: "恶灵岛下级 2号门"},
 		{Zone: 459, id:  211, name: "恶灵岛下级 3号门"},
-		
+
 		{Zone: 759, id: 2003, name: "恶灵岛上级 1号门"},
 		{Zone: 759, id:  200, name: "恶灵岛上级 2号门"},
 		{Zone: 759, id:  210, name: "恶灵岛上级 2号门"},
 		{Zone: 759, id:  211, name: "恶灵岛上级 3号门"},
-		
+
 		{Zone: 950, id: 3018, name: "龙本P3-后方封路火墙"},
-		
+
 		{Zone: 1023, id: 12345, name: "後方移動術 I"},
-		
+
 		{Zone: 1023, id: 10235016, name: "精靈召喚：守護精靈 III"},
 		{Zone: 1023, id: 10235017, name: "精靈召喚：守護精靈 III"},
 		{Zone: 1023, id: 10236013, name: "精靈召喚：生命精靈 XIII"},
@@ -290,9 +293,9 @@ module.exports = {
 		{Zone: 1023, id: 10237015, name: "召喚精靈：閃電精靈 XII"},
 		{Zone: 1023, id: 10238007, name: "召喚精靈：破壞精靈 VII"},
 		{Zone: 1023, id: 10238008, name: "召喚精靈：破壞精靈 VII"},
-		
+
 		{Zone: 1023, id: 10239003, name: "召喚元素王"},
-		
+
 		{Zone: 1023, id: 30303007, name: "機器人出擊 VII"},
 		{Zone: 1023, id: 30301004, name: "設置哨兵塔 IV"}
 	],
@@ -422,7 +425,7 @@ module.exports = {
 		{Zone: 2020, id: 1601, name: "空岛(蚂蚁)-獨眼食腐獸"},
 		{Zone: 2020, id: 1700, name: "空岛(肥虫)-佩奇斯"}
 	],
-	
+
 	GageInfo: {
 		id:              0n,
 		huntingZoneId:    0,
@@ -434,7 +437,7 @@ module.exports = {
 		maxHp: 16000000000n,
 		unk3: true // always 1?
 	},
-	
+
 	classToItem: {
 		// 阿勒坤祭司的精髓
 		1:  602172, // 枪骑
@@ -452,7 +455,7 @@ module.exports = {
 		11: 88704, // 忍者
 		12: 88704  // 月光
 	},
-	
+
 	filterLoot: [
 		7214, // 复活卷轴
 		8000, // 恢复晶球
@@ -464,49 +467,49 @@ module.exports = {
 		8008, 8009, 8010, 8011, 8012, 8013, 8014, 8015, 8016, 8017, 8018, 8019, 8020, 8021, 8022, // 恢复精气晶球 I-XV
 		8023, // 魔力精气晶球
 		8025, // 增幅的晶球
-		
+
 		206883, // 時空精髓
 		221212, // 上锁的箱子
-		
+
 		89768, // 初階平衡武器強化石
 		89769, // 中階平衡武器強化石
 		89770, // 高階平衡武器強化石
-		
+
 		89771, // 初階平衡防具強化石
 		89772, // 中階平衡防具強化石
 		89773, // 高階平衡防具強化石
-		
+
 		// 98598, // 老舊的補給品
 		// 98599, // 恶魔的脚爪
 		// 98600, // 龍的骨頭
-		
+
 		98683, // 加工的礦物
 		98697, // 亞斯蘭的腳爪
-		
+
 		98666, // 技能鍛鍊卷軸 I
 		98667, // 技能屬性開放卷軸 I
 		98668, // 技能鍛鍊卷軸 II
 		98669, // 技能屬性開放卷軸 II
 		98670, // 技能鍛鍊卷軸 III
-		
+
 		98850, // 技能鍛鍊經驗值書籍 (小型)
 		98851, // 技能鍛鍊經驗值書籍 (中型)
 		98852, // 技能鍛鍊經驗值書籍 (大型)
 		98853, // 技能鍛鍊經驗值書籍 (超大型)
-		
+
 		602172, // 阿勒坤祭司的精髓
 		602174, // 阿勒坤祭司的精髓
-		
+
 		209901, // 技能鍛鍊經驗值書籍 I
 		209902, // 技能鍛鍊經驗值書籍 II
 		209903, // 技能鍛鍊經驗值書籍 III
 		209904, // 技能鍛鍊經驗值書籍 IV
-		
+
 		6335, // 爆炎長槍
 		6336, // 解放之石
 		98551, // 大地之石
 		98552, // 暴風之石
-		
+
 		70093 // 男子氣概藥水
 	],
 	ignoreItems: [
@@ -536,7 +539,7 @@ module.exports = {
 		88915, // 生鏽的憤怒拳甲
 		88916, // 生鏽的憤怒手裏劍
 		88917, // 生鏽的憤怒月光刀
-		
+
 		88931, // 生鏽的金屬重甲
 		88932, // 生鏽的金屬輕甲
 		88933, // 生鏽的金屬布甲
@@ -555,7 +558,7 @@ module.exports = {
 		88946, // 生鏽的憤怒重甲鞋子
 		88947, // 生鏽的憤怒輕甲鞋子
 		88948, // 生鏽的憤怒布甲鞋子
-		
+
 		89000, // 賽蓮的遺物 I
 		89001, // 賽蓮的遺物 II
 		89002, // 賽蓮的遺物 III
@@ -576,7 +579,7 @@ module.exports = {
 		89112, // 基德的聖物 III
 		89113, // 基德的聖物 IV
 		89114, // 基德的聖物 V
-		
+
 		9372, // 懲罰的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
 		9373, // 和諧的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
 		9374, // 森嚴的綢緞內衣 [稀有]	0	0	icon_equipments.underwear01_f_tex
@@ -589,7 +592,7 @@ module.exports = {
 		9384, // 懲罰的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
 		9385, // 和諧的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
 		9386, // 森嚴的若隱若現白色&金色絲綢內衣	0	0	icon_equipments.pc_event_45_f_b_tex
-		
+
 		97911, // [S][傳說]堅強的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
 		97912, // [S][傳說]生命的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
 		97913, // [S][傳說]尖銳的若隱若現的黑色絲綢內衣	0	0	icon_equipments.pc_event_45_f_a_tex
@@ -655,7 +658,7 @@ module.exports = {
 		97973, // 尖銳的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
 		97974, // 守護的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
 		97975, // 流動的傳說3 內衣	0	0	icon_equipments.pc_event_45_f_a_tex
-		
+
 		99437, // 堅強的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
 		99438, // 生命的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
 		99439, // 尖銳的2017版 白色內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_a_tex
@@ -686,7 +689,7 @@ module.exports = {
 		99504, // 尖銳的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
 		99505, // 守護的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
 		99506, // 流動的2017版 粉紅內衣 Ⅳ [傳說] 	0	0	icon_equipments.pc_event_57_f_b_tex
-		
+
 		//98106, // [物理增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
 		//98107, // [魔法增幅]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
 		98108, // [物理抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
@@ -705,7 +708,7 @@ module.exports = {
 		98145, // [魔法抵抗]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
 		//98146, // [物理暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
 		//98147, // [魔法暴擊]2019淺色絲綢內衣	0	0	icon_equipments.pc_event_45_f_c_tex
-		
+
 		//98148, // [高階][物理增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
 		//98149, // [高階][魔法增幅]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
 		98150, // [高階][物理抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
@@ -724,7 +727,7 @@ module.exports = {
 		98187, // [高階][魔法抵抗]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
 		//98188, // [高階][物理暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
 		//98189, // [高階][魔法暴擊]2019深色絲綢內衣	0	0	icon_equipments.pc_event_45_f_d_tex
-		
+
 		136007, // 堅強的灰色連身內衣 [高級]
 		136008, // 生命的灰色連身內衣 [高級]
 		136009, // 尖銳的灰色連身內衣 [高級]
@@ -760,7 +763,7 @@ module.exports = {
 		136039, // 尖銳的梅勒目修蒙綢緞內衣 [傳說]
 		136040, // 守護的梅勒目修蒙綢緞內衣 [傳說]
 		136041, // 流動的梅勒目修蒙綢緞內衣 [傳說]
-		
+
 		146033, // 堅強的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
 		146034, // 生命的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
 		146035, // 尖銳的灰色連身內衣 [傳說]	0	0	icon_equipments.underwear00_f_tex
@@ -798,7 +801,7 @@ module.exports = {
 		146067, // 尖銳的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
 		146068, // 守護的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
 		146069, // 流動的馬勒夏黑色蕾絲內衣(傳說)	0	0	icon_equipments.pc_event_31_f_a_tex
-		
+
 		// 202018, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
 		// 202043, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
 		// 202048, // 堅強的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
@@ -814,7 +817,7 @@ module.exports = {
 		202022, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
 		202047, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
 		202052, // 流動的2018夏季黑喵內衣	0	0	icon_equipments.pc_event_67_f_a_tex
-		
+
 		// 202053, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
 		// 202078, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
 		// 202083, // 堅強的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
@@ -830,8 +833,8 @@ module.exports = {
 		202057, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
 		202082, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
 		202087, // 流動的2018夏季花喵內衣	0	0	icon_equipments.pc_event_67_f_b_tex
-		
-		
+
+
 		209601, // 技能鍛鍊初階經驗值獲得 I [小型]
 		209602, // 技能鍛鍊初階經驗值獲得 I [中型]
 		209603, // 技能鍛鍊初階經驗值獲得 II [小型]
@@ -1328,27 +1331,27 @@ module.exports = {
 		98852, // 技能鍛鍊經驗值書籍 (大型)
 		98853  // 技能鍛鍊經驗值書籍 (超大型)
 	],
-	
+
 	potions: [
 	/*  id:     // 药品 itemID编号
 		hp:     // true: 回血药品 fals: 回蓝药品
 		use_at: // 触发自动喝药的 百分量 */
-		
+
 		{id: 6560, category: "mp", use_at: 80}, // 低级MP恢复药水
 		{id: 6561, category: "mp", use_at: 70}, // 中级MP恢复药水
 		{id: 6562, category: "mp", use_at: 50}, // 高级MP恢复药水
 		{id: 6563, category: "mp", use_at: 30}, // 最高级MP恢复药水
-		
+
 		{id: 6550, category: "hp", use_at: 65}, // 低级HP恢复药水
 		{id: 6551, category: "hp", use_at: 60}, // 中级HP恢复药水
 		{id: 6552, category: "hp", use_at: 55}, // 高级HP恢复药水
 		{id: 6553, category: "hp", use_at: 50}, // 最高级HP恢复药水
-		
+
 		{id:     28, category: "hp", use_at: 40}, // 凯亚的号角喇叭 100%
 		{id: 221225, category: "hp", use_at: 40}, // 凯亚的号角喇叭 100%
-		
+
 		{id:    114, category: "hp", use_at: 50}, // 聯盟補給品：急速恢復藥水
-		
+
 		// {id:    111, category: "hp", use_at: 30}, // 持续性恢复药水 75%
 		// {id: 193027, category: "hp", use_at: 20}  // HP恢復藥水 75%
 	]

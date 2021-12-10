@@ -50,12 +50,12 @@ module.exports = function TeraHelper(mod) {
 			mod.send('S_STEER_DEBUG_COMMAND', 1, {
 				command: `fov ${mod.settings.fovValue}`
 			})
-			
+
 			if (!mod.settings.boxOpen) mod.clearAllIntervals(box)
 			if (!mod.settings.repeatUseItem) mod.clearAllIntervals(repeatUseItem)
 		})
 	}
-	
+
 	mod.game.initialize('me')
 	mod.game.initialize('me.abnormalities')
 	mod.game.initialize('inventory')
@@ -64,7 +64,7 @@ module.exports = function TeraHelper(mod) {
 			if (mod.settings.autoUse && Set.autoUseItems.includes(item.id)) UseItem(item.id)
 		})
 	})
-	
+
 	// 镜头抖动
 	mod.clientInterface.configureCameraShake(!mod.settings.camShake)
 	// Cmd-Slash
@@ -548,7 +548,7 @@ module.exports = function TeraHelper(mod) {
 		mod.dispatch.addDefinition('C_REGISTER_REPAIR_ITEM', 1, [ // 数据包总长度 4+16+8
 			['counter', 'uint32'], // times triggered
 			['unk', 'int32'], // unkown
-			
+
 			['contract', 'uint32'],
 			['dbid',     'uint64'],
 			['id',       'int32']
@@ -556,19 +556,19 @@ module.exports = function TeraHelper(mod) {
 		mod.dispatch.addDefinition('C_START_REPAIR_ITEM', 1, [ // 数据包总长度 4+4+8
 			['counter', 'uint32'], // times triggered
 			['unk', 'int32'], // unkown
-			
+
 			['contract', 'uint32']
 		])
 		mod.dispatch.addDefinition('C_REQUEST_REPAIR_ITEM', 1, [ // 数据包总长度 4+16+8
 			['counter', 'uint32'], // times triggered
 			['unk', 'int32'], // unkown
-			
+
 			['contract', 'uint32'],
 			['dbid',     'uint64'],
 			['id',       'int32']
 		])
 	}
-	
+
 	let repairing = null
 	mod.tryHook('C_REGISTER_REPAIR_ITEM', 1, e => { repairing = e })
 	mod.tryHook('C_START_REPAIR_ITEM', 1, e => {
@@ -720,7 +720,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_UPDATE_GUILD_QUEST_STATUS', 1, e => {
 		if (!mod.settings.guildQuest || e.unk1!=2) return // 提交-完成任务
 		mod.setTimeout(() => { mod.trySend('C_REQUEST_FINISH_GUILD_QUEST', 1, { quest: e.quest }) }, 1000)
-		
+
 		if (Set.ignoreQuest.includes(e.questId)) return // 重新-接受任务
 		mod.setTimeout(() => { mod.trySend('C_REQUEST_START_GUILD_QUEST', 1, { questId: e.quest }) }, 3000)
 	})
@@ -738,6 +738,18 @@ module.exports = function TeraHelper(mod) {
 			e.loc = obj.loc
 			e.w = obj.w * Math.PI
 		})
+		return true
+	})
+	// 传送副本采集点
+	mod.hook('S_SPAWN_ME', 3, e => {
+		if (!mod.settings.DungeonCollection) return
+		Set.DungeonCollectionTP.forEach(obj => {
+			if (obj.Zone != mod.game.me.zone) return
+			e.loc = obj.loc
+			e.w = obj.w * Math.PI
+			mod.command.message(`自动传送至: ` + obj.name)
+		})
+
 		return true
 	})
 	// 无限 飞行能量 Fly-More
@@ -797,7 +809,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_POINT_STORE_SELL_LIST', 1, e => {
 		if (e.button == 609) mod.game.me.reputation = e.tokens
 	})
-	
+
 	mod.hook('S_EACH_SKILL_RESULT', 14, e => {
 		if (mod.settings.fakeBossGage && e.target==Set.GageInfo.id && e.type==1) {
 			Set.GageInfo.curHp -= e.value
@@ -835,10 +847,10 @@ module.exports = function TeraHelper(mod) {
 			if (e.type == 2 && !mod.settings.healNumber) e.type = 0 // 治疗队员
 			if (e.type == 3 && !mod.settings.mpNumber) e.type = 0 // 回蓝队员
 		}
-		
+
 		return true
 	})
-	
+
 	// 标记采集物
 	mod.hook('S_SPAWN_COLLECTION', 4, e => {
 		if (!mod.settings.tipGather) return
@@ -855,7 +867,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_DESPAWN_COLLECTION', 2, e => {
 		if (tipMarkers.has(e.gameId*100n)) RemoveMarker(e.gameId*100n)
 	})
-	
+
 	mod.dispatch.addDefinition('C_TRY_NPC_INTERACTION', 0, [ // 数据包总长度 4+20
 		['target', 'uint64'],
 		['loc', 'vec3']
@@ -882,12 +894,12 @@ module.exports = function TeraHelper(mod) {
 		if (mod.settings.tipNPC) {
 			Set.tipNPCs.forEach(obj => {
 				if (obj.Zone!=e.huntingZoneId || obj.id!=e.templateId) return
-				
+
 				TipMessage(`分流-${mod.game.me.channel} ${obj.name}`, 25)
 				tipMarkers.set(e.gameId*100n, e.loc)
 				MakeMarker(e.gameId*100n, e.loc)
 				if (obj.type) notifierMsg(`${obj.name}`, `${obj.type}`)
-				
+
 				if (!obj.logTime) return
 				if (!logTime[obj.type]) logTime[obj.type] = {}
 				logTime[obj.type][obj.name] = {
@@ -945,11 +957,11 @@ module.exports = function TeraHelper(mod) {
 		mod.send('S_BOSS_GAGE_INFO', 3, Set.GageInfo)
 	}
 	mod.hook('S_NPC_LOCATION', 3, e => {
-		
+
 	})
 	mod.hook('S_DESPAWN_NPC', 3, e => {
 		if (e.gameId == Set.GageInfo.id) Set.GageInfo.id = 0n
-		
+
 		if (tipMarkers.has(e.gameId*100n)) RemoveMarker(e.gameId*100n)
 		// 移除 尸体灰烬
 		if (mod.settings.deadAnimation && e.type==5) {
@@ -961,7 +973,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_SYSTEM_MESSAGE', 1, e => {
 		var msg = mod.parseSystemMessage(e.message)
 		if (msg.id == 'SMT_CANT_USE_ITEM_COOLTIME') return false
-		
+
 		if (msg.id == 'SMT_FIELDBOSS_APPEAR') { // 领地王/商人 登场
 			getNpcInfo(msg.tokens.npcName)
 		// tokens: { regionName: '@rgn:213', npcName: '@creature:26#5001' }
@@ -973,7 +985,7 @@ module.exports = function TeraHelper(mod) {
 		// tokens: { guildName: '龍吟虎嘯丶', userName: '无人之岛', npcname: '@creature:26#5001'}
 		// tokens: { guildName: '龍吟虎嘯丶', userName: '无人之岛', npcname: '@creature:39#501' }
 		// tokens: { guildName: '龍吟虎嘯丶', userName: '无人之岛', npcname: '@creature:51#4001'}
-		
+
 		if (msg.id == 'SMT_WORLDSPAWN_NOTIFY_SPAWN') { // 公会王 登场
 			getNpcInfo(msg.tokens.npcName)
 		// tokens: { regionName: '@rgn:218', npcName: '@creature:84#1278' }
@@ -986,7 +998,7 @@ module.exports = function TeraHelper(mod) {
 			if (obj.Zone!=parseInt(npcInfo[0]) || obj.id!=parseInt(npcInfo[1]) || !obj.type) return
 			TipMessage(`${obj.type} - ${obj.name}`, 213)
 			notifierMsg(`${obj.name}`, `${obj.type}`)
-			
+
 			if (!logTime[obj.type]) logTime[obj.type] = {}
 			logTime[obj.type][obj.name] = {
 				Zone: obj.Zone,
@@ -1004,7 +1016,7 @@ module.exports = function TeraHelper(mod) {
 			notifierMsg(`${obj.name}`, `${obj.type}`)
 		})
 	})
-	
+
 	// Party-Members
 	mod.hook('S_CHANGE_PARTY_MANAGER', 2, e => {
 		mod.game.me.isLeader = (mod.game.me.playerId == e.playerId)
@@ -1033,7 +1045,7 @@ module.exports = function TeraHelper(mod) {
 		partyMembers = []
 		RemoveAllMarkers(tipMarkers)
 	})
-	
+
 	// User-Player
 	mod.dispatch.addDefinition('S_PARTY_INFO', 2, [
 		['gameId',  'uint64'],
@@ -1079,7 +1091,7 @@ module.exports = function TeraHelper(mod) {
 				tipMarkers.set(member.playerId, e.loc)
 			})
 		}
-		
+
 		if (!mod.game.me.is(e.gameId)) return
 		// 自动喝药水
 		if (!useHpPot._destroyed) mod.clearInterval(useHpPot)
@@ -1115,7 +1127,7 @@ module.exports = function TeraHelper(mod) {
 	mod.command.add("cl", () => {
 		RemoveAllMarkers(tipMarkers)
 	})
-	
+
 	// 自动拾取-过滤拾取
 	let dropItems = new Map()
 	let loop = { _destroyed: true }
@@ -1139,11 +1151,11 @@ module.exports = function TeraHelper(mod) {
 	})
 	mod.hook('S_SPAWN_DROPITEM', (Ver<99?8 : 9), e => {
 		if (!e.owners.includes(mod.game.me.playerId)) return
-		
+
 		if (mod.settings.ignoreItem && Set.ignoreItems.includes(e.item)) return false
 		if (mod.settings.filterMode==0 && Set.filterLoot.includes(e.item)) return
 		if (e.item>=89333 && e.item<=89508) return
-		
+
 		dropItems.set(e.gameId, e.loc)
 		if (mod.settings.autoLoot && loop._destroyed && mod.settings.lootMode==0) {
 			loop = mod.setInterval(startLoot, mod.settings.lootDelay)
@@ -1190,18 +1202,18 @@ module.exports = function TeraHelper(mod) {
 	function getDistance(locA, locB) {
 		return Math.sqrt(Math.pow((locA.x - locB.x), 2) + Math.pow((locA.y - locB.y), 2))
 	}
-	
+
 	// 自动喝药水
 	let hpPotList = Set.potions.filter(function (p) { return p.category == "hp" })
 	let mpPotList = Set.potions.filter(function (p) { return p.category == "mp" })
 	hpPotList.sort(function (a, b) { return parseFloat(b.use_at) - parseFloat(a.use_at) })
 	mpPotList.sort(function (a, b) { return parseFloat(b.use_at) - parseFloat(a.use_at) })
-	
+
 	let useHpPot = { _destroyed: true }
 	mod.hook('S_CREATURE_CHANGE_HP', 6, e => {
 		if (!mod.settings.autoHpPot || !mod.game.me.is(e.target) || !mod.game.me.alive) return
 		mod.game.me.hp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
-		
+
 		if (!useHpPot._destroyed) return
 		if (mod.game.me.hp<hpPotList[0].use_at) {
 			raiseHp()
@@ -1220,7 +1232,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('S_PLAYER_CHANGE_MP', 1, e => {
 		if (!mod.settings.autoMpPot || !mod.game.me.is(e.target) || !mod.game.me.alive) return
 		mod.game.me.mp = Math.round(Number(e.curHp) / Number(e.maxHp) * 100)
-		
+
 		if (!useMpPot._destroyed) return
 		if (mod.game.me.mp<mpPotList[0].use_at) {
 			raiseMp()
@@ -1235,7 +1247,7 @@ module.exports = function TeraHelper(mod) {
 			if (mod.game.me.mp<item.use_at && mod.game.inventory.findInBag(item.id)) UseItem(item.id)
 		})
 	}
-	
+
 	// 循环使用道具 / 快速开盒
 	let repeatUseItem = { _destroyed: true }, boxItem = null, box = { _destroyed: true }
 	mod.hook('C_USE_ITEM', 3, e => {
@@ -1252,7 +1264,7 @@ module.exports = function TeraHelper(mod) {
 	mod.hook('C_GACHA_CANCEL', 1, e => {
 		if (!box._destroyed) mod.clearInterval(box)
 	})
-	
+
 	function UseItem(itemId) {
 		var itemData = mod.game.inventory.find(itemId)
 		if (!itemData || mod.game.me.mounted) return
@@ -1282,7 +1294,7 @@ module.exports = function TeraHelper(mod) {
 	async function notifierMsg(msg, title = 'Tera Notification', icon='tera.png') {
 		if (!mod.settings.notifierMsg) return
 		mod.clientInterface.flashWindow()
-		
+
 		if (Ver<100 || await mod.clientInterface.hasFocus()) return
 		Notifier.notify({
 			title: title,
@@ -1291,7 +1303,7 @@ module.exports = function TeraHelper(mod) {
 			// actions: ['OK', 'Cancel'],
 		})
 	}
-	
+
 	this.destructor = () => {
 		if (ui) { ui.close(), ui = null }
 		mod.clearAllTimeouts()

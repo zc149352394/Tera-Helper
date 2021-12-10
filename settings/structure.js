@@ -6,7 +6,7 @@ module.exports = [
 	{key: "repeatUseDelay", name: `循环使用间隔(ms)`, type: "number", min: 1.0, max: 99999.0, step: 1.0},
 
 	{key: "notifierMsg", name: `暂离状态 Windows通知`, type: "bool"},
-	
+
 	{key: "autoHpPot", name: `自动喝HP药水`, type: "bool"},
 	{key: "autoMpPot", name: `自动喝MP药水`, type: "bool"},
 
@@ -25,6 +25,7 @@ module.exports = [
 	{key: "camShake", name: `阻止 镜头抖动`, type: "bool"},
 
 	{key: "dungeon", name: `副本 尾王传送`, type: "bool"},
+	{key: "DungeonCollection", name: `副本 采集点传送`, type: "bool"},
 	{key: "flyMore", name: `无限 飞行能量`, type: "bool"},
 
 	{key: "enchantChance",   name: `显示强化几率(如果可用)`, type: "bool"},
